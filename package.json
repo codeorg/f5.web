@@ -1,7 +1,7 @@
 {
-  "name": "angular2-aot-demo",
+  "name": "f5.web",
   "version": "1.0.1",
-  "description": "Angular 2 AOT (Ahead Of Time) offline compilation example with Webpack",
+  "description": "Angular 2 AOT ",
   "scripts": {
     "ngc": "ngc -p ./tsconfig.aot.json",
     "webpack-jit": "webpack --progress --config webpack.jit.config.js",
