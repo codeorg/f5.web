@@ -9,7 +9,7 @@ module.exports = function(env) {
     entry: {
       'app.aot': './app/bootstrap.aot.ts',
       'vendor': './app/vendor.ts',
-      //"polyfills":'./app/polyfills.ts'
+      "polyfills":'./app/polyfills.ts'
     },
     output: {
       path: './dist/aot'
