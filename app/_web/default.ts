@@ -6,15 +6,17 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   template: `
-    <h2>HEROES</h2>
-    <ul class="items">
-      <li *ngFor="let hero of heroes">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
-      </li>
-    </ul>
+    <h2>首页</h2>
+      <a routerLink="/default" routerLinkActive="active">首页</a>
+    <a routerLink="/login" routerLinkActive="active">登入</a>
+    <a routerLink="/user/test1" routerLinkActive="active">/user/test1</a>
+    <a routerLink="/user/test2" routerLinkActive="active">/user/test2</a>
+    
+        <a routerLink="/user2/test1" routerLinkActive="active">/user2/test1</a>
+    <a routerLink="/user2/test2" routerLinkActive="active">/user2/test2</a>
   `
 })
-export class HeroListComponent implements OnInit {
+export class Default implements OnInit {
   heroes: [{"id":"10",name:"ssss"},{"id":"101",name:"101sss"}];
 
   private selectedId: number;

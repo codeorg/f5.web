@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 //import { HomeComponent } from './homem';
-import { HeroesModule }         from './heroes.module';
+import { WebModule }         from './web/module';
+import { UserModule }         from './user/module';
+import { User2Module }         from './user2/module';
 
 @NgModule({
+  imports: [BrowserModule,UserModule,User2Module,WebModule],
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports: [BrowserModule,HeroesModule
-  ],
   providers: []
 })
 export class AppModule {}
