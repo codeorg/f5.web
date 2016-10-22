@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
     <router-outlet></router-outlet>
   `
 })
-export class Frame { }
+export class FrameComponent { }
 
 
 /*

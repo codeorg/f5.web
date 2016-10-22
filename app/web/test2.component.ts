@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     <p>user test2</p>
   `
 })
-export class Test2 { }
+export class Test2Component { }
 
 
 /*

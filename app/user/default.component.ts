@@ -6,9 +6,11 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
   template: `
 aaaaaaaa
 
+
+    <router-outlet></router-outlet>
   `
 })
-export class Default implements OnInit {
+export class DefaultComponent implements OnInit {
 
   constructor(
       private route: ActivatedRoute,
@@ -22,10 +24,3 @@ export class Default implements OnInit {
   }
 
 }
-
-
-/*
- Copyright 2016 Google Inc. All Rights Reserved.
- Use of this source code is governed by an MIT-style license that
- can be found in the LICENSE file at http://angular.io/license
- */

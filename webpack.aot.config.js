@@ -8,15 +8,16 @@ module.exports = function(env) {
   return webpackMerge(commonConfig(), {
     entry: {
       'app.aot': './app/bootstrap.aot.ts',
-      'vendor': './app/vendor.ts',
-      "polyfills":'./app/polyfills.ts'
+      'ngx': './app/ngx.ts',
+      'ng': './app/ng.ts',
+      //"vendor":'./app/vendor.ts'
     },
     output: {
       path: './dist/aot'
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-        name: [ 'app.aot','vendor','polyfills']
+        name: [ 'app.aot','ngx','ng','polyfills']
       }),
       new HtmlWebpackPlugin({
         template: 'index.aot.html',

@@ -1,10 +1,10 @@
 import { NgModule }     from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { Test1 } from './test1';
-import { Test2 } from './test2';
-import { Default }       from './default';
-import { Frame }     from './frame';
+import { Test1Component } from './test1.component';
+import { Test2Component } from './test2.component';
+import { DefaultComponent }       from './default.component';
+import { FrameComponent }     from './frame.component';
 
 
 
@@ -14,27 +14,27 @@ import { Frame }     from './frame';
 
       {
         path: 'user',
-        component: Frame,
+        component: FrameComponent,
         children: [
           {
             path: 'test1',
-            component: Test1
+            component: Test1Component
           },
           {
             path: 'test2',
-            component: Test2
+            component: Test2Component
           }
           // {
           //   path: '',
-          //   component: Default,
+          //   component: DefaultComponent,
           //   children: [
           //     {
           //       path: 'test1',
-          //       component: Test1
+          //       component: Test1Component
           //     },
           //     {
           //       path: 'test2',
-          //       component: Test2
+          //       component: Test2Component
           //     }
           //   ]
           // }
@@ -49,11 +49,5 @@ import { Frame }     from './frame';
     //CrisisDetailResolve
   ]
 })
-export class Router { }
+export class UserRouterModule { }
 
-
-/*
- Copyright 2016 Google Inc. All Rights Reserved.
- Use of this source code is governed by an MIT-style license that
- can be found in the LICENSE file at http://angular.io/license
- */

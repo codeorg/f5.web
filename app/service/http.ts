@@ -1,0 +1,22 @@
+/**
+ * Created by Administrator on 2016/10/21.
+ */
+import {Injectable} from '@angular/core';
+import {Http as HTTP} from '@angular/http';
+import {Router} from '@angular/router';
+import {HttpProvider} from './httpProvider';
+
+@Injectable()
+export class Http extends HttpProvider{
+    private router:Router;
+    constructor(private _router:Router,private _http:HTTP) {
+        super();
+        this.router=_router;
+        this.http=_http;
+        this.create("web");
+    }
+    httpHandle(response:any){
+        if(response.err==401) this.router.navigate(['/user/test1']);
+    }
+}
+

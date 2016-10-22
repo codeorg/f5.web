@@ -10,9 +10,9 @@ import { Login }    from './login';
     RouterModule.forRoot([
 
       // { path: '',
-      //   component: Default
+      //   component: DefaultComponent
       // },
-      //{ path: 'default',  component: Default },
+      //{ path: 'default',  component: DefaultComponent },
       //{ path: 'login',  component: Login },
       { path: '**', component: Default }
     ])

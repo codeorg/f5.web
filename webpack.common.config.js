@@ -12,7 +12,7 @@ module.exports = function() {
     bail: false,
 
     entry: {
-      //"polyfills":'./app/polyfills.ts'
+      "polyfills":'./app/polyfills.ts'
 
     },
 

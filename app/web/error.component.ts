@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <p>user test2</p>
+    <p>页面出错</p>
   `
 })
-export class Test2 { }
+export class ErrorComponent { }
 
 
 /*

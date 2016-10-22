@@ -26,15 +26,15 @@ import { Frame }     from './frame';
           }
           // {
           //   path: '',
-          //   component: Default,
+          //   component: DefaultComponent,
           //   children: [
           //     {
           //       path: 'test1',
-          //       component: Test1
+          //       component: Test1Component
           //     },
           //     {
           //       path: 'test2',
-          //       component: Test2
+          //       component: Test2Component
           //     }
           //   ]
           // }

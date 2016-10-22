@@ -8,13 +8,14 @@ module.exports = function(env) {
   return webpackMerge(commonConfig(), {
     entry: {
       'app.jit': './app/bootstrap.jit.ts',
-      polyfills: [
+/*      polyfills: [
+        path.resolve(__dirname, 'node_modules/angular2-ie9-shims/shims_for_IE.dev.js'),
         path.resolve(__dirname, 'node_modules/es6-shim/es6-shim.min.js'),
         path.resolve(__dirname, 'node_modules/es6-promise/dist/es6-promise.min.js'),
         path.resolve(__dirname, 'node_modules/reflect-metadata/Reflect.js'),
         path.resolve(__dirname, 'node_modules/zone.js/dist/zone.min.js'),
         path.resolve(__dirname, 'node_modules/zone.js/dist/long-stack-trace-zone.min.js')
-      ]
+      ]*/
     },
     output: {
       path: './dist/jit'

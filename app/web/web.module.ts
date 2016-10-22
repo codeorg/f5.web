@@ -4,32 +4,31 @@ import { CommonModule }   from '@angular/common';
 import { RouterModule }   from '@angular/router';
 
 
-import { Frame }     from './frame';
-import { Default }       from './default';
-import { Test1 } from './test1';
-import { Test2 } from './test2';
-import { Error } from './error';
-
-import { Router } from './router';
+import { FrameComponent }     from './frame.component';
+import { DefaultComponent }       from './default.component';
+import { Test1Component } from './test1.component';
+import { Test2Component } from './test2.component';
+import { ErrorComponent } from './error.component';
+//import { http } from '../service/http';
+import { WebRouterMoudule } from './web-router.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    Router
+    WebRouterMoudule
   ],
   declarations: [
-    Frame,
-    Default,
-    Test1,
-    Test2,
-    Error
+    FrameComponent,
+    DefaultComponent,
+    Test1Component,
+    Test2Component,
+    ErrorComponent
   ],
   exports: [
     RouterModule
   ],
-  providers: [
-  ]
+  providers: []
 })
 export class WebModule {}
 
