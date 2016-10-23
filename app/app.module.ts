@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule }    from '@angular/http';
-
+import { utility } from './service/utility';
 
 import { AppComponent } from './app.component';
-//import { HomeComponent } from './homem';
+
 import { WebModule }         from './web/web.module';
 import { UserModule }         from './user/user.module';
 import { User2Module }         from './user2/module';
@@ -15,4 +15,8 @@ import { User2Module }         from './user2/module';
   declarations: [AppComponent],
   providers: []
 })
-export class AppModule {}
+export class AppModule {
+  constructor(){
+    utility.browserId();
+  }
+}

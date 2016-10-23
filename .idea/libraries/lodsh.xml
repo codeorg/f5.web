@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="lodsh" type="javaScript">
+    <properties>
+      <option name="frameworkName" value="node_modules" />
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/node_modules/@types/lodash" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/node_modules/@types/lodash" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

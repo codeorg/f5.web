@@ -1,49 +1,54 @@
 /**
  * Created by Administrator on 2016/10/21.
  */
-//import * as _ from "lodash";
+import * as _ from 'lodash';
+//declare var Fingerprint2:any;
+//declare var dateFormat:any;
+let Fingerprint2=require('../lib/fingerprint2');
+let DateFormat=require('../lib/dateFormat');
 export class utility {
-    static toInt(obj:any) {
-        if (!obj) return 0;
-        if (typeof obj === 'number')return Math.floor(obj);
-        if (typeof obj !== 'string')obj = obj.toString();
-        if (utility.isInt(obj))return Math.floor(obj);
-        if (utility.isFloat(obj)) {
-            return Math.floor(parseFloat(obj));
-        }
-        return 0;
+    public static _dateFormat=new DateFormat();
+    public static Bid:string="";
+    static toInt(value?: any): number {
+        return _.toInteger(value);
     }
 
-    static toFloat(obj:any) {
-        if (!obj) return 0;
-        if (typeof obj === 'number')return obj;
-        if (typeof obj !== 'string')obj = obj.toString();
-        //if (utility.isInt(obj))return parseInt(obj);
-        if (utility.isFloat(obj)) {
-            return parseFloat(obj);
-        }
-        return 0;
+    static toNumber(value?: any): number {
+        if (_.isNaN(value)) return 0;
+        return _.toNumber(value);
     }
 
     //整数
-    static isInt(str:string) {
-        return /^-?\d+$/.test(str);
+    static isInt(value?: any): boolean {
+        return _.isInteger(value);
     }
 
-    //浮点数
-    static isFloat(str:string) {
-        return /^(-?\d+)(\.\d+)?$/.test(str);
+    //整数
+    static isNumber(value?: any): boolean {
+        return _.isNumber(value);
     }
 
-    static trim(str:string) {
-        return str.replace(/(^\s*)|(\s*$)/g, "");
+
+    static isArray(value?: any): boolean {
+        return _.isArray(value);
     }
 
-    static isArray(ar:any) {
-        return Array.isArray(ar);
+    //是否Json对象，包含数组
+    static isObject(value?: any) {
+        _.isObject(value)
     }
 
-    static format(str:string,...params:string[]) {
+    //是否Json对象
+    static isPlainObject(value?: any) {
+        _.isPlainObject(value)
+    }
+
+
+    static trim(string?: string): string {
+        return _.trim(string);
+    }
+
+    static format(str: string, ...params: string[]): string {
         var formatRegExp = /%[sdj%]/g;
         var i = 1;
         var args = [];
@@ -65,14 +70,6 @@ export class utility {
             switch (x) {
                 case '%s':
                     return String(args[i++]);
-                // case '%d':
-                //     return Number(args[i++]);
-                // case '%j':
-                //     try {
-                //         return JSON.stringify(args[i++]);
-                //     } catch (_) {
-                //         return '[Circular]';
-                //     }
                 default:
                     return x;
             }
@@ -80,76 +77,116 @@ export class utility {
         return str;
     };
 
-    static formatObj(obj) {
-        if (utility.isNullObj(obj)) return null;
-        return obj;
-    }
+    // static formatObj(obj) {
+    //     if (utility.isNullObj(obj)) return null;
+    //     return obj;
+    // }
+    //
+    // static isNullObj(obj) {
+    //     if (!obj) return true;
+    //     if (typeof obj === 'object') {
+    //         for (var key in obj) {
+    //             return false;
+    //         }
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    static isNullObj(obj) {
-        if (!obj) return true;
-        if (typeof obj === 'object') {
-            for (var key in obj) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    static formatIp(ip) {
-        ip.replace(/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})/, function (a, b) {
-            ip = b;
-        })
+    static formatIp(ip: string): string {
+        ip.replace(/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})/, (a, b)=>ip = b)
         return ip;
     }
 
-    static formatMoney(obj) {
-        obj = utility.toFloat(obj);
-        return obj.toFixed(2);
+    static formatMoney(value?: any): string {
+        value = utility.toNumber(value);
+        return value.toFixed(2);
     }
 
-//     //可以只有date(format)
-//     static date(dateTime,format){
-//
-//     if(!dateTime)dateTime = new Date();
-//     var testD= new Date(dateTime);
-//     if(testD=="Invalid Date")dateTime = new Date();
-//
-//     if(!format)format = 'yyyy-mm-dd'
-//     return dateFormat(dateTime, format);
-// }
-//     //获取距离1970-1-1的ms(以天为单位)
-//     var dayTime=function(dateTime){
-//     "use strict";
-//     if(!dateTime)dateTime = new Date();
-//     dateTime=date(dateTime,'yyyy-mm-dd 00:00:00')
-//     dateTime=new Date(dateTime);
-//     return dateTime.getTime();
-// }
-//
-//     //增加/减少天数，默认下一天
-//     var setDay=function(dateTime,inc){
-//     if(!inc) inc=1;
-//     if(!dateTime)dateTime = new Date();
-//     if(typeof dateTime=="string" || typeof dateTime=="number") dateTime = new Date(dateTime);
-//     return dayTime(dateTime.setDate(dateTime.getDate() +inc));
-// }
+    //扩展对象，不创建新对象
+    static extend(obj: Object, ...objs: Object[]){
+        for(let i in objs){
+            _.assignIn(obj,objs[i]);
+        }
+        return obj;
+    }
+    //合并并且创建新对象
+    static concat(obj: Object, ...objs: Object[]) {
+        let o={};
+        _.assignIn(o,obj);
+        return utility.extend(o,objs);
+    }
+
+    //查找对象
+    static find(src: any[], find: Object): Object {
+        return _.find(src, find);
+
+    }
+
+    static indexOf(arr: any[], value: any): number {
+        return _.indexOf(arr, value);
+    }
+
+    static findIndex(ary:any[], obj:Object) {
+        return _.findIndex(ary, obj);
+    }
+
+    static random(start:number, end:number):number {
+        return _.random(start, end)
+    }
+
+    //{b:1,a:2,c:3} =>{a:2,b:1,c:3}
+    static sort(obj:any):Object {
+        if (_.isArray(obj)) return _.sortBy(obj);
+        let o = {};
+        var arr = _.sortBy(_.keys(obj));
+        _.forEach(arr,  (value) =>{
+            o[value] = obj[value];
+        });
+        return o
+    }
 
 
-    // function isStringNumber(num) {
-    //     return /^(-?\d+)(\.\d+)?$/.test(str);
-    //     return /^-?\d+\.?\d*$/.test(num.replace(/["']/g, ''));
-    // }
 
-    static decodeUrl(value) {
+    //可以只有date(format)
+    static formatDate(dateTime?:any,format?:string):string {
+        if (!dateTime)dateTime = new Date();
+        let testD: any;
+        testD = new Date(dateTime);
+        if (testD == "Invalid Date")dateTime = new Date();
+        if (!format)format = 'yyyy-mm-dd'
+
+        return utility._dateFormat(dateTime, format);
+    }
+
+    //获取距离1970-1-1的ms(以天为单位)
+    static dayTime(dateTime?:any) :number{
+        if (!dateTime)dateTime = new Date();
+        dateTime = utility.formatDate(dateTime, 'yyyy-mm-dd 00:00:00')
+        console.log("dt",dateTime)
+
+        dateTime = new Date(dateTime);
+        return dateTime.getTime();
+    }
+
+    //增加/减少天数，默认下一天
+     static setDay(dateTime?:any,inc?:number):number {
+         if (!inc) inc = 1;
+         if (!dateTime)dateTime = new Date();
+         if (typeof dateTime == "string" || typeof dateTime == "number") dateTime = new Date(dateTime);
+         return utility.dayTime(dateTime.setDate(dateTime.getDate() + inc));
+     }
+
+
+    static decodeUrl(value: string): string {
         try {
             return decodeURIComponent(value);
         } catch (e) {
-            // Ignore any invalid uri component
+            return "";
         }
     }
 
-    static encodeUrl(value) {
+    static encodeUrl(value: string): string {
         return encodeURIComponent(value);
     }
 
@@ -198,9 +235,11 @@ export class utility {
                 return null;
             }
 
-            if (item.charAt(0) === "{" || item.charAt(0) === "[" || utility.isFloat(item)) {
-                return JSON.parse(item);
-            }
+            if (utility.isObject(item))return JSON.parse(item);
+
+            // if (item.charAt(0) === "{" || item.charAt(0) === "[" || utility.isFloat(item)) {
+            //     return JSON.parse(item);
+            // }
             return item;
         };
 
@@ -227,22 +266,17 @@ export class utility {
     })();
     //----------ls　开始　------------------------------
 
-    //对象是否包含
-    static includes(src:Object, find:Object){
-        for(let key in find){
-            if(src[key]!==find[key]) return false;
-        }
-        return true;
+    static browserId():Promise<any> {
+        return new Promise((resolve,reject)=>{
+            new Fingerprint2().get((result, components)=> {
+                utility.Bid=result;
+                return resolve(result)
+            });
+        })
     }
 
-    //[{a:1},{b:1}],{a:1}
-     static find(arr:Object[],obj:Object) {
-         if(!obj) return arr;
-         for(let i in arr){
-             let item=arr[i];
-             if(utility.includes(item,obj)) return item;
-         }
-         return null;
-     }
 }
+
+
+
 

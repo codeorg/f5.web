@@ -11,7 +11,6 @@ import { FrameComponent }     from './frame.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-
       {
         path: 'user',
         component: FrameComponent,

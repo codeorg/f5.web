@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
+import {BidResolve} from '../service/bid-resolve.service';
+
 import {Test1Component} from './test1.component';
 import {Test2Component} from './test2.component';
 import {DefaultComponent} from './default.component';
@@ -16,6 +18,11 @@ if (/msie/i.test(userAgent)) {
         {
             path: '',
             component: FrameComponent,
+            resolve: {
+                    bid: BidResolve,
+                    sss:BidResolve
+                  }
+                 ,
             children: [
                 {
                     path: '',
@@ -38,7 +45,7 @@ if (/msie/i.test(userAgent)) {
     exports: [
         RouterModule
     ],
-    providers: []
+    providers: [BidResolve]
 })
 export class WebRouterMoudule {
 

@@ -13,7 +13,6 @@ module.exports = function() {
 
     entry: {
       "polyfills":'./app/polyfills.ts'
-
     },
 
     output: {
@@ -43,7 +42,6 @@ module.exports = function() {
     },
 
     plugins: [
-      // new DashboardPlugin({ port: 3001 })
       new webpack.LoaderOptionsPlugin({
         minimize: true,
         debug: false

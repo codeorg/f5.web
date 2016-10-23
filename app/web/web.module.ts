@@ -9,7 +9,6 @@ import { DefaultComponent }       from './default.component';
 import { Test1Component } from './test1.component';
 import { Test2Component } from './test2.component';
 import { ErrorComponent } from './error.component';
-//import { http } from '../service/http';
 import { WebRouterMoudule } from './web-router.module';
 
 @NgModule({
@@ -33,8 +32,3 @@ import { WebRouterMoudule } from './web-router.module';
 export class WebModule {}
 
 
-/*
- Copyright 2016 Google Inc. All Rights Reserved.
- Use of this source code is governed by an MIT-style license that
- can be found in the LICENSE file at http://angular.io/license
- */
