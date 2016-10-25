@@ -5,14 +5,16 @@ import { HttpModule }    from '@angular/http';
 import { utility } from './service/utility';
 
 import { AppComponent } from './app.component';
-
+import { AppRouterMoudule }         from './app-router.module';
 import { WebModule }         from './web/web.module';
 import { UserModule }         from './user/user.module';
 import { User2Module }         from './user2/module';
 
 
 @NgModule({
-  imports: [BrowserModule,FormsModule,ReactiveFormsModule,HttpModule,UserModule,User2Module,WebModule],
+  imports: [BrowserModule,FormsModule,ReactiveFormsModule,HttpModule,UserModule,User2Module,WebModule,AppRouterMoudule
+
+  ],
   bootstrap: [AppComponent],
   declarations: [AppComponent],
   providers: []

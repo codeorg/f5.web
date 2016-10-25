@@ -35,7 +35,7 @@ import {utility} from '../service/utility';
 				<div class="form-con">	
 				    {{username.errors}}
 					<div [hidden]="username.dirty" class="star">3~18位的数字、字母组成,不支持特殊符号</div>
-					<div [hidden]="(!username.dirty || !username.errors || !username.errors.required)" class="star">Name is required</div>
+					<div [hidden]="(!username.dirty )" class="star">Name is required</div>
   	                <div [hidden]="true" class="correct">正确</div>
 					
 				
@@ -341,7 +341,7 @@ export class RegComponent implements OnInit {
     db:any={};
     form: any;
     constructor(private http: Http) {
-
+        utility.ls.set("sssssss",{ssssssss:1111111111})
 
     }
 

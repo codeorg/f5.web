@@ -23,8 +23,9 @@ module.exports = function() {
       loaders: [
         {
           test: /\.ts$/,
-          loaders: ['angular2-template-loader', 'awesome-typescript-loader'],
+          loaders: ['angular2-template-loader', 'awesome-typescript-loader','angular2-load-children-loader'],
           exclude: [/\.(spec|e2e)\.ts$/]
+          //exclude: /node_modules/
         },
         {
           test: /\.(html|css)$/,

@@ -12,7 +12,7 @@ module.exports = function() {
   return {
     debug: false,
     profile: true,
-    bail: true,
+    bail: false,
     entry: {
       'app.aot': './app/bootstrap.aot.ts',
       'ngx': './app/ngx.ts',
@@ -28,8 +28,9 @@ module.exports = function() {
       loaders: [
         {
           test: /\.ts$/,
-          loaders: ['angular2-template-loader', 'awesome-typescript-loader'],
-          exclude: [/\.(spec|e2e)\.ts$/]
+          loaders: [ 'awesome-typescript-loader','angular2-template-loader','angular2-load-children-loader'],
+          //exclude: [/\.(spec|e2e)\.ts$/]
+          exclude: /node_modules/
         },
         {
           test: /\.(html|css)$/,
@@ -74,13 +75,13 @@ module.exports = function() {
         },
         sourceMap: false
       }),
-      // new CompressionPlugin({
-      //   asset: "[path].gz[query]",
-      //   algorithm: "gzip",
-      //   test: /\.js$|\.html$/,
-      //   threshold: 10240,
-      //   minRatio: 0.8
-      // }),
+      new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+        test: /\.js$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8
+      }),
       new HtmlWebpackPlugin({
         template: 'index.aot.html',
         inject: false

@@ -3,7 +3,7 @@
  */
 import * as _ from 'lodash';
 //declare var Fingerprint2:any;
-//declare var dateFormat:any;
+declare var window:any;
 let Fingerprint2=require('../lib/fingerprint2');
 let DateFormat=require('../lib/dateFormat');
 export class utility {
@@ -51,9 +51,13 @@ export class utility {
     static format(str: string, ...params: string[]): string {
         var formatRegExp = /%[sdj%]/g;
         var i = 1;
-        var args = [];
+        var args:any[] = [];
         args.push(str);
         [].push.apply(args, params);
+
+        // for(let _j in params){
+        //     args.push(params[i]);
+        // }
 
         // if (utility.isArray(arguments[1]) || (typeof arguments[1] === 'object' && arguments[1].toString().indexOf('Arguments') !== -1)) {
         //     args.push(str);
@@ -136,10 +140,10 @@ export class utility {
     }
 
     //{b:1,a:2,c:3} =>{a:2,b:1,c:3}
-    static sort(obj:any):Object {
+    static sort(obj?:any):any {
         if (_.isArray(obj)) return _.sortBy(obj);
-        let o = {};
-        var arr = _.sortBy(_.keys(obj));
+        let o:any = {};
+        let arr:any[] = _.sortBy(_.keys(obj));
         _.forEach(arr,  (value) =>{
             o[value] = obj[value];
         });
@@ -192,15 +196,15 @@ export class utility {
 
     //----------ls　开始　------------------------------
     static ls = (function () {
-        var storageType = 'localStorage', prefix = 'codeorg.', webStorage;
-        var deriveQualifiedKey = function (key) {
+        let storageType:string = 'localStorage', prefix:string = 'codeorg.', webStorage:any= window[storageType];
+        let deriveQualifiedKey =  (key:string)=> {
             return prefix + key;
         };
         //是否支持
-        var isSupported = (function () {
+        var isSupported:boolean = (function () {
             try {
-                var supported = (storageType in window && window[storageType] !== null);
-                var key = deriveQualifiedKey('__' + Math.round(Math.random() * 1e7));
+                var supported:boolean = (storageType in window && window[storageType] !== null);
+                var key = deriveQualifiedKey('__' + new String(Math.round(Math.random() * 1e7)));
                 if (supported) {
                     webStorage = window[storageType];
                     webStorage.setItem(key, '');
@@ -214,8 +218,8 @@ export class utility {
             }
         }());
 
-        var setLS = function (key, value) {
-            if (!isSupported) return;
+        var setLS = function (key:any, value:any) {
+            //if (!isSupported) return;
             if (!value) {
                 value = "";
             } else if (typeof value != "string") {
@@ -227,8 +231,8 @@ export class utility {
             }
         };
 
-        var getLS = function (key) {
-            if (!isSupported) return null;
+        var getLS = function (key:any) {
+            //if (!isSupported) return null;
             var item = webStorage ? webStorage.getItem(deriveQualifiedKey(key)) : null;
             //item = decodeUrl(item);
             if (!item || item === 'null') {
@@ -243,7 +247,7 @@ export class utility {
             return item;
         };
 
-        var removeLS = function (key) {
+        var removeLS = function (key:any) {
             if (!isSupported && !webStorage) return;
             webStorage.removeItem(deriveQualifiedKey(key));
         };
@@ -268,7 +272,7 @@ export class utility {
 
     static browserId():Promise<any> {
         return new Promise((resolve,reject)=>{
-            new Fingerprint2().get((result, components)=> {
+            new Fingerprint2().get((result:any, components:any)=> {
                 utility.Bid=result;
                 return resolve(result)
             });

@@ -12,8 +12,8 @@ class FNS {
         //console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
-    create() {
-        let FN=(fn)=>{
+    create():any {
+        let FN=(fn:string)=>{
             return (query?: any):Promise<any>=> {
                 //console.log(this.hp.host+this._module+"/"+fn,query)
                 query=query||{};
@@ -30,7 +30,7 @@ class FNS {
                     .catch(this.handleError);
             }
         }
-        let obj = {"fn":FN};
+        let obj:any = {"fn":FN};
         this.hp.fns.forEach(fn=> {
             obj[fn]=FN(fn);
         })
@@ -50,7 +50,7 @@ export class HttpProvider {
         "test2",
         "insert"
     ];
-    public modules:string[] = ['login', 'user', 'demo'];
+    //public modules:string[] = ['login', 'user', 'demo'];
     public user:any;
     public login:any;
     public demo:any;
@@ -62,7 +62,11 @@ export class HttpProvider {
         else
             this.host+=_path+"/";
 
-        this.modules.forEach(m=>this[m]=new FNS(this,m).create());
+        this.user=new FNS(this,"user").create();
+        this.login=new FNS(this,"login").create();
+        this.demo=new FNS(this,"demo").create();
+
+        //this.modules.forEach(m=>this["login"]=new FNS(this,m).create());
     }
     httpHandle(response:any){
         //console.log("ssssss")

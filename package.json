@@ -8,10 +8,12 @@
     "webpack-jit": "webpack --progress --config webpack.jit.config.js",
     "webpack-aot": "webpack --progress --config webpack.aot.config.js --optimize-minimize",
     "start-jit": "npm run webpack-jit && webpack-dev-server --config webpack.jit.config.js --port 4201",
-    "start-aot": "npm run ngc && npm run webpack-aot && webpack-dev-server --config webpack.aot.config.js --port 4202",
+    "start-aot": "npm run ngc && npm run copy && npm run webpack-aot && webpack-dev-server --config webpack.aot.config.js --port 4202",
     "build-jit": "npm run webpack-jit",
     "build-aot": "npm run ngc && npm run webpack-aot",
-    "demo": "rimraf ./dist && npm run build-jit && npm run build-aot"
+    "demo": "rimraf ./dist && npm run build-jit && npm run build-aot",
+    "copy":"ncp ./app/sub ./aot/app/sub"
+
   },
   "keywords": [
     "angular2",
@@ -58,8 +60,10 @@
     "zone.js": "^0.6.21"
   },
   "dependencies": {
+    "@angular/compiler-cli": "^0.6.4",
     "@angular/forms": "^2.1.0",
     "@angular/http": "^2.1.0",
+    "@angular/platform-server": "^2.1.1",
     "@types/lodash": "^4.14.37",
     "awesome-typescript-loader": "^2.2.4",
     "lodash": "^4.16.4",
