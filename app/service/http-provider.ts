@@ -1,5 +1,6 @@
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {utility} from "./utility";
 
 
 //所有方法
@@ -13,8 +14,12 @@ class FNS {
     }
     create() {
         let FN=(fn)=>{
-            return (query: any):Promise<any>=> {
-                console.log(this.hp.host+this._module+"/"+fn,query)
+            return (query?: any):Promise<any>=> {
+                //console.log(this.hp.host+this._module+"/"+fn,query)
+                query=query||{};
+                //query.sid=utility.ls.get("sid");
+                query._bid=utility.Bid;
+                console.log("query",query)
                 return this.hp.http.post(this.hp.host+this._module+"/"+fn,query)
                     .toPromise()
                     .then(response => {

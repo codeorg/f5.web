@@ -8,6 +8,7 @@ import { FrameComponent }     from './frame.component';
 import { DefaultComponent }       from './default.component';
 import { Test1Component } from './test1.component';
 import { Test2Component } from './test2.component';
+import { RegComponent } from './reg.component';
 import { ErrorComponent } from './error.component';
 import { WebRouterMoudule } from './web-router.module';
 
@@ -22,6 +23,7 @@ import { WebRouterMoudule } from './web-router.module';
     DefaultComponent,
     Test1Component,
     Test2Component,
+    RegComponent,
     ErrorComponent
   ],
   exports: [

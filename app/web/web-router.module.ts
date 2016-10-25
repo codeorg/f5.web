@@ -7,12 +7,15 @@ import {Test1Component} from './test1.component';
 import {Test2Component} from './test2.component';
 import {DefaultComponent} from './default.component';
 import {FrameComponent} from './frame.component';
+import {RegComponent} from './reg.component';
 import {ErrorComponent} from './error.component';
 let useH = null;
 let userAgent = window.navigator.userAgent;
 if (/msie/i.test(userAgent)) {
     useH = {useHash: true};
 }
+useH = {useHash: true};
+
 @NgModule({
     imports: [RouterModule.forChild([
         {
@@ -39,6 +42,9 @@ if (/msie/i.test(userAgent)) {
         }
 
     ]), RouterModule.forRoot([
+        //{path: "sub", loadChildren: "../sub/sub.module#SubModule" },
+
+        {path: 'reg', component: RegComponent},
         {path: '**', component: ErrorComponent}
     ], useH)
     ],

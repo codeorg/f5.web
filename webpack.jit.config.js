@@ -1,33 +1,55 @@
 'use strict';
 const path = require('path');
-const commonConfig = require('./webpack.common.config.js');
-const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
-module.exports = function(env) {
-  return webpackMerge(commonConfig(), {
+module.exports = function() {
+  return {
+    debug: false,
+    profile: true,
+    bail: false,
     entry: {
       'app.jit': './app/bootstrap.jit.ts',
-/*      polyfills: [
-        path.resolve(__dirname, 'node_modules/angular2-ie9-shims/shims_for_IE.dev.js'),
-        path.resolve(__dirname, 'node_modules/es6-shim/es6-shim.min.js'),
-        path.resolve(__dirname, 'node_modules/es6-promise/dist/es6-promise.min.js'),
-        path.resolve(__dirname, 'node_modules/reflect-metadata/Reflect.js'),
-        path.resolve(__dirname, 'node_modules/zone.js/dist/zone.min.js'),
-        path.resolve(__dirname, 'node_modules/zone.js/dist/long-stack-trace-zone.min.js')
-      ]*/
+      "polyfills":'./app/polyfills.ts'
     },
+
     output: {
-      path: './dist/jit'
+      path: './dist/jit',
+      filename: '[name].js',
+      chunkFilename: '[id].chunk.js'
     },
+
+    module: {
+      loaders: [
+        {
+          test: /\.ts$/,
+          loaders: ['angular2-template-loader', 'awesome-typescript-loader'],
+          exclude: [/\.(spec|e2e)\.ts$/]
+        },
+        {
+          test: /\.(html|css)$/,
+          loader: 'raw-loader',
+          exclude: ['app/index.html']
+        }
+      ]
+    },
+
+    resolve: {
+      root: [ path.resolve(__dirname, 'app') ],
+      extensions: ['', '.ts', '.js']
+    },
+
     plugins: [
       new HtmlWebpackPlugin({
         template: 'index.jit.html',
         inject: false
       })
     ],
+    devtool: false,
     devServer: {
-      contentBase: 'dist/jit'
+      contentBase: 'dist/jit',
+      compress: true
     }
-  });
-};
+
+  };
+}
