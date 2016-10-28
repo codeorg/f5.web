@@ -16,7 +16,7 @@ useH = {useHash: true};
             {path: "sub", loadChildren: "es6-promise?,[name]!./sub/sub.module#SubModule" },
             {path: 'reg', component: RegComponent},
             {path: '**', component: ErrorComponent}
-    ])
+    ],useH)
     ],
     exports: [
         RouterModule

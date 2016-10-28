@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
+
 import { HttpModule }    from '@angular/http';
 import { utility } from './service/utility';
 
@@ -12,8 +16,15 @@ import { User2Module }         from './user2/module';
 
 
 @NgModule({
-  imports: [BrowserModule,FormsModule,ReactiveFormsModule,HttpModule,UserModule,User2Module,WebModule,AppRouterMoudule
-
+  imports: [
+    BrowserModule,
+    FormsModule,         // <-- add this
+    ReactiveFormsModule,  // <-- and this
+    HttpModule,
+    UserModule,
+    User2Module,
+    WebModule,
+    AppRouterMoudule
   ],
   bootstrap: [AppComponent],
   declarations: [AppComponent],

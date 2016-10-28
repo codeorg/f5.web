@@ -1,5 +1,8 @@
 import { NgModule }       from '@angular/core';
-import { FormsModule }    from '@angular/forms';
+import {
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 import { CommonModule }   from '@angular/common';
 import { RouterModule }   from '@angular/router';
 
@@ -12,10 +15,12 @@ import { RegComponent } from './reg.component';
 import { ErrorComponent } from './error.component';
 import { WebRouterMoudule } from './web-router.module';
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     WebRouterMoudule
   ],
   declarations: [
@@ -24,6 +29,7 @@ import { WebRouterMoudule } from './web-router.module';
     Test1Component,
     Test2Component,
     RegComponent,
+
     ErrorComponent
   ],
   exports: [

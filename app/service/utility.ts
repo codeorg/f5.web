@@ -2,6 +2,7 @@
  * Created by Administrator on 2016/10/21.
  */
 import * as _ from 'lodash';
+import apply = Reflect.apply;
 //declare var Fingerprint2:any;
 declare var window:any;
 let Fingerprint2=require('../lib/fingerprint2');
@@ -41,6 +42,14 @@ export class utility {
     //是否Json对象
     static isPlainObject(value?: any) {
         _.isPlainObject(value)
+    }
+
+    static drop(array:any[],num?:number){
+        return _.drop(array,num);
+    }
+
+    static dropRight(array:any[],num?:number){
+        return _.dropRight(array,num);
     }
 
 
@@ -108,17 +117,20 @@ export class utility {
     }
 
     //扩展对象，不创建新对象
-    static extend(obj: Object, ...objs: Object[]){
-        for(let i in objs){
+    static extend(...objs: Object[]){
+        if(!objs||objs.length==0) return;
+        let obj=objs[0];
+        for(let i=1;i<objs.length; i++){
             _.assignIn(obj,objs[i]);
         }
         return obj;
     }
     //合并并且创建新对象
-    static concat(obj: Object, ...objs: Object[]) {
+    static concat(...objs: Object[]) {
         let o={};
-        _.assignIn(o,obj);
-        return utility.extend(o,objs);
+        _.assignIn(o,objs[0]);
+        objs[0]=o;
+        return utility.extend.apply(this,objs);
     }
 
     //查找对象

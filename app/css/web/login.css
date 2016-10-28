@@ -86,7 +86,7 @@
 .card_hejia strong{color:#ff0000;font-size: 30px;font-family: "微软雅黑";}
 .form-con{margin-left:10px; float:left;}
 .form-con img{ width:80px; height:30px; margin-top:4px; float:left;display:inline-block;}
-.error,.correct,.not{display:none;background:url(/img/icon-01.png) no-repeat; padding-left:26px; height:18px; margin-top:10px; line-height:18px;}
+.error,.correct,.not{background:url(/img/icon-01.png) no-repeat; padding-left:26px; height:18px; margin-top:10px; line-height:18px;}
 .error{background-position:left -35px; color:#ff5000;}
 .correct{background-position:left -17px;color:#5cbc48;}
 .not{background-position:left 1px;color:#ffa078; margin-right:10px;}

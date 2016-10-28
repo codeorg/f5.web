@@ -3,6 +3,7 @@ import {ActivatedRoute, Router, Params} from '@angular/router';
 import {Http} from '../service/http';
 import {HttpUser} from '../service/http-user';
 import {utility} from '../service/utility';
+
 require('../lib/jquery-1.7.2.min');
 require('../lib/jquery.plugin.min');
 var FH = require('../lib/fashionfoucs');

@@ -4,28 +4,16 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "noImplicitAny": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "types": [
-      //"es6-shim",
+      "es6-shim",
       "node"
     ]
   },
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useCache": true,
-    "useBabel": true,
-    "babelCore": "babel-core"
-  },
-  "angularCompilerOptions": {
-    "genDir": "aot",
-    "skipMetadataEmit" : true,
-    "debug": true,
-    "trace": true
-  },
-  "compileOnSave": false,
   "files": [
     "app/app.module.ts",
     "app/sub/sub.module.ts"
@@ -33,5 +21,13 @@
   "exclude": [
     "node_modules",
     "dist"
-  ]
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "genDir": "aot",
+    "skipMetadataEmit" : true,
+    "debug": false
+  }
 }

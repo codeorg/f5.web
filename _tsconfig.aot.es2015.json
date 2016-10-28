@@ -17,6 +17,7 @@
     "app/sub/sub.module.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
+
     "forkChecker": true,
     "useCache": true,
     "useBabel": true,

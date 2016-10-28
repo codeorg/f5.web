@@ -29,8 +29,8 @@ module.exports = function() {
         {
           test: /\.ts$/,
           loaders: [ 'awesome-typescript-loader','angular2-template-loader','angular2-load-children-loader'],
-          //exclude: [/\.(spec|e2e)\.ts$/]
-          exclude: /node_modules/
+          exclude: [/\.(spec|e2e)\.ts$/]
+          //exclude: /node_modules/
         },
         {
           test: /\.(html|css)$/,
@@ -46,6 +46,7 @@ module.exports = function() {
     },
 
     plugins: [
+
       new CopyWebpackPlugin([{
         from: path.resolve(__dirname, 'app/css'),
         to: path.resolve(__dirname, 'dist/aot/css'),
@@ -86,6 +87,7 @@ module.exports = function() {
         template: 'index.aot.html',
         inject: false
       })
+
     ],
 
     devtool: false,

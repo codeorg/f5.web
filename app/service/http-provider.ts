@@ -1,6 +1,9 @@
+
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {utility} from "./utility";
+import {Observable} from "rxjs";
+
 
 
 //所有方法
@@ -14,20 +17,35 @@ class FNS {
     }
     create():any {
         let FN=(fn:string)=>{
-            return (query?: any):Promise<any>=> {
+            return (query?: any):Observable<any>=> {
                 //console.log(this.hp.host+this._module+"/"+fn,query)
                 query=query||{};
                 //query.sid=utility.ls.get("sid");
                 query._bid=utility.Bid;
                 console.log("query",query)
-                return this.hp.http.post(this.hp.host+this._module+"/"+fn,query)
-                    .toPromise()
-                    .then(response => {
-                        let res=response.json();
-                        this.hp.httpHandle(res);
-                        return Promise.resolve(res)
-                    })
-                    .catch(this.handleError);
+
+                return new Observable((obs: any)=> {
+                    return this.hp.http.post(this.hp.host+this._module+"/"+fn,query)
+                        .subscribe((data:any) => {
+                            let res=data.json();
+                            this.hp.httpHandle(res);
+                            obs.next(res);
+                            obs.complete();
+                            //return Promise.resolve(res)
+                        },(e:any)=>{
+                            obs.next(e.json());
+                            obs.complete();
+                        })
+
+                })
+                // return this.hp.http.post(this.hp.host+this._module+"/"+fn,query)
+                //     .toPromise()
+                //     .then(response => {
+                //         let res=response.json();
+                //         this.hp.httpHandle(res);
+                //         return Promise.resolve(res)
+                //     })
+                //     .catch(this.handleError);
             }
         }
         let obj:any = {"fn":FN};
@@ -47,7 +65,7 @@ export class HttpProvider {
         "page",
         "update",
         "remove",
-        "test2",
+        "exist",
         "insert"
     ];
     //public modules:string[] = ['login', 'user', 'demo'];
