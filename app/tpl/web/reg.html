@@ -1,6 +1,6 @@
 <div class="login-top">
     <div class="wrap">
-        <div class="home-back"><a href="index.html">返回首页</a></div>
+        <div class="home-back"><a routerLink="/">返回首页</a></div>
     </div>
 </div>
 <div class="login-logo"><img src="/img/logo.png" /></div>
@@ -132,7 +132,7 @@
                            class="form-control"
                            placeholder="银行类型"
                            style="cursor: pointer"
-                           value="{{fg.controls['bank_type'].value|banksort}}" readonly>
+                           value="{{fg.controls['bank_type'].value|bs}}" readonly>
 
                     <!--<input type="text" class="form-control"  id="prv" name="prv" tabIndex="9" type="text" value="&#45;&#45;&#45;&#45;选择银行&#45;&#45;&#45;&#45;" readonly />-->
                     <div class="btn-an"></div>
@@ -145,7 +145,7 @@
                 <!--#省份弹框-->
                 <div *ngIf="btShow" class="tk-box province">
                     <div class="list" id="options">
-                        <a (click)="fg.controls['bank_type'].setValue(bs.id);btShow=false;" *ngFor="let bs of banksort" style="cursor: pointer"> {{bs.id | banksort}}</a>
+                        <a (click)="fg.controls['bank_type'].setValue(bs.id);btShow=false;" *ngFor="let bs of banksort" style="cursor: pointer"> {{bs.id | bs}}</a>
 
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {BidResolve} from './service/bid-resolve.service';
-import {CacheResolve} from './service/cache-resolve.service';
-import {RegComponent} from './web/reg.component';
+//import {BidResolve} from './service/bid-resolve.service';
+//import {CacheResolve} from './service/cache-resolve.service';
+//import {RegComponent} from './web/reg.component';
 import {ErrorComponent} from './web/error.component';
 import {Http} from './service/http';
 
@@ -18,21 +18,23 @@ useH = {useHash: true};
     imports: [
         RouterModule.forRoot([
             {path: "sub", loadChildren: "es6-promise?,[name]!./sub/sub.module#SubModule" },
-            {
-                path: 'reg',
-                component: RegComponent,
-                resolve: {
-                    bid: BidResolve,
-                    cache: CacheResolve
-                }
-            },
+
+
+            // {
+            //     path: 'reg',
+            //     component: RegComponent,
+            //     resolve: {
+            //         bid: BidResolve,
+            //         cache: CacheResolve
+            //     }
+            // },
             {path: '**', component: ErrorComponent}
     ],useH)
     ],
     exports: [
         RouterModule
     ],
-    providers: [Http,BidResolve,CacheResolve]
+    providers: [Http]
 })
 export class AppRouterModule {
 

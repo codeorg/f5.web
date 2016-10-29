@@ -13,6 +13,7 @@ import {HttpUser} from '../service/http-user';
 import {utility} from '../service/utility';
 import {form} from '../service/form';
 import {Observable} from 'rxjs/Rx';
+import 'rxjs/Rx';
 
 @Component({
     styleUrls: ['../css/web/common.css', '../css/web/login.css'],
@@ -30,7 +31,7 @@ export class RegComponent implements OnInit {
     public banksort:any[];
 
     constructor(private http: Http, private fb: FormBuilder,protected  route:ActivatedRoute) {
-        this.banksort=route.snapshot.data['cache'].banksort;
+        this.banksort=utility.ls.get("banksort");
 
         console.log(this.banksort)
     }
@@ -43,7 +44,16 @@ export class RegComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.fb)
+        let query:any={};
+        utility.extend(query,this.fg.value);
+        query.vid=this.vid;
+        this.http.reg.insert(query).subscribe((res:any)=>{
+            console.log(res.data)
+            if(res.data){
+
+            }
+        })
+        //console.log(this.fg)
         //console.log('you submitted value: ', value);
     }
 
@@ -260,9 +270,9 @@ function usernameExist2(control: AbstractControl): Observable<any> {
     })
 }
 
-function ux(c: FormControl) {
-    return usernameExist2(c).debounceTime(1000).distinctUntilChanged().first();
-}
+// function ux(c: FormControl) {
+//     return usernameExist2(c).debounceTime(1000).distinctUntilChanged().first();
+// }
 
 
 interface IUsernameEmailValidator {

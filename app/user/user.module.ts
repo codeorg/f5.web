@@ -9,7 +9,8 @@ import { Test1Component } from './test1.component';
 import { Test2Component } from './test2.component';
 
 import { UserRouterModule } from './user-router.module';
-import {BankSortPipe,TestPipe} from '../service/pipe';
+import {TestPipe,BankSortPipe} from './pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +22,8 @@ import {BankSortPipe,TestPipe} from '../service/pipe';
     DefaultComponent,
     Test1Component,
     Test2Component,
-    TestPipe
+    TestPipe,
+    BankSortPipe,
   ],
   exports: [
     RouterModule

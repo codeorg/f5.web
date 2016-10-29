@@ -5,13 +5,13 @@ import {
 } from '@angular/forms';
 import { CommonModule }   from '@angular/common';
 import { RouterModule }   from '@angular/router';
-import {BankSortPipe,TestPipe} from '../service/pipe';
+import {BankSortPipe} from './pipe';
 
 import { FrameComponent }     from './frame.component';
 import { DefaultComponent }       from './default.component';
-import { Test1Component } from './test1.component';
-import { Test2Component } from './test2.component';
+import { RegOkComponent } from './reg-ok.component';
 import {RegComponent} from './reg.component';
+
 import {ErrorComponent} from './error.component';
 
 import { WebRouterMoudule } from './web-router.module';
@@ -27,8 +27,7 @@ import { WebRouterMoudule } from './web-router.module';
   declarations: [
     FrameComponent,
     DefaultComponent,
-    Test1Component,
-    Test2Component,
+    RegOkComponent,
     RegComponent,
     ErrorComponent,
     BankSortPipe

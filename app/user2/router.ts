@@ -34,7 +34,7 @@ import { Frame }     from './frame';
           //     },
           //     {
           //       path: 'test2',
-          //       component: Test2Component
+          //       component: RegOkComponent
           //     }
           //   ]
           // }

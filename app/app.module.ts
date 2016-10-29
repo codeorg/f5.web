@@ -1,17 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import {
     FormsModule,
     ReactiveFormsModule
 } from '@angular/forms';
-
 import { HttpModule }    from '@angular/http';
-import { utility } from './service/utility';
+import { ROUTES } from './app.routes';
+import { Http } from './service/http';
+
 import { AppComponent } from './app.component';
-import { AppRouterModule }         from './app-router.module';
 import { WebModule }         from './web/web.module';
 import { UserModule }         from './user/user.module';
 import { User2Module }         from './user2/module';
+
+
+
+let useH:any= null;
+let userAgent = window.navigator.userAgent;
+if (/msie/i.test(userAgent)) {
+  useH = {useHash: true};
+}
+useH = {useHash: true};
 
 @NgModule({
   imports: [
@@ -22,11 +32,11 @@ import { User2Module }         from './user2/module';
     UserModule,
     User2Module,
     WebModule,
-    AppRouterModule
+    RouterModule.forRoot(ROUTES,useH)
   ],
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  providers: []
+  providers: [Http]
 })
 export class AppModule {
   constructor(){

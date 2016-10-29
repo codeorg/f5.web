@@ -2,15 +2,13 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 
-import {BidResolve} from '../service/bid-resolve.service';
-
-
-import {Test1Component} from './test1.component';
-import {Test2Component} from './test2.component';
+import {RegOkComponent} from './reg-ok.component';
 import {DefaultComponent} from './default.component';
 import {FrameComponent} from './frame.component';
 import {RegComponent} from './reg.component';
-import {ErrorComponent} from './error.component';
+
+import {BidResolve} from '../service/bid-resolve.service';
+import {CacheResolve} from '../service/cache-resolve.service';
 
 let useH:any= null;
 let userAgent = window.navigator.userAgent;
@@ -25,9 +23,9 @@ useH = {useHash: true};
             path: '',
             component: FrameComponent,
             resolve: {
-                    bid: BidResolve,
-                    sss:BidResolve
-                  }
+                bid: BidResolve,
+                cache: CacheResolve
+            }
                  ,
             children: [
                 {
@@ -35,12 +33,12 @@ useH = {useHash: true};
                     component: DefaultComponent
                 },
                 {
-                    path: 'test1',
-                    component: Test1Component
+                    path: 'regOk',
+                    component: RegOkComponent
                 },
                 {
-                    path: 'test2',
-                    component: Test2Component
+                    path: 'reg',
+                    component: RegComponent
                 }]
         }
 
@@ -49,7 +47,7 @@ useH = {useHash: true};
     exports: [
         RouterModule
     ],
-    providers: [BidResolve]
+    providers: [BidResolve,CacheResolve]
 })
 export class WebRouterMoudule {
 
