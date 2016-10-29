@@ -1,11 +1,6 @@
 import { NgModule }       from '@angular/core';
-import {
-    FormsModule,
-    ReactiveFormsModule
-} from '@angular/forms';
-import { CommonModule }   from '@angular/common';
 import { RouterModule }   from '@angular/router';
-import {BankSortPipe} from './pipe';
+import {CodeorgModule} from '../codeorg.module';
 
 import { FrameComponent }     from './frame.component';
 import { DefaultComponent }       from './default.component';
@@ -19,9 +14,7 @@ import { WebRouterMoudule } from './web-router.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    CodeorgModule,
     WebRouterMoudule
   ],
   declarations: [
@@ -30,7 +23,6 @@ import { WebRouterMoudule } from './web-router.module';
     RegOkComponent,
     RegComponent,
     ErrorComponent,
-    BankSortPipe
   ],
   exports: [
     RouterModule

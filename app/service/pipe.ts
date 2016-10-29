@@ -1,7 +1,8 @@
-import {  PipeTransform } from '@angular/core';
+import { Pipe,PipeTransform } from '@angular/core';
 import { utility } from './utility';
 
-export class BankSort implements PipeTransform {
+@Pipe({name: 'bs'})
+export class BankSortPipe implements PipeTransform {
     transform(value: string): string {
         let arr=utility.ls.get('banksort');
         let obj:any=utility.find(arr,{id:value});
@@ -9,8 +10,8 @@ export class BankSort implements PipeTransform {
         return obj.name;
     }
 }
-
-export class Test implements PipeTransform {
+@Pipe({name: 'test'})
+export class TestPipe implements PipeTransform {
     transform(value: string): string {
         return "111";
     }

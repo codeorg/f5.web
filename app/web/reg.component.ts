@@ -30,7 +30,7 @@ export class RegComponent implements OnInit {
     btShow: boolean;
     public banksort:any[];
 
-    constructor(private http: Http, private fb: FormBuilder,protected  route:ActivatedRoute) {
+    constructor(private http: Http, private fb: FormBuilder,protected router:Router) {
         this.banksort=utility.ls.get("banksort");
 
         console.log(this.banksort)
@@ -48,10 +48,20 @@ export class RegComponent implements OnInit {
         utility.extend(query,this.fg.value);
         query.vid=this.vid;
         this.http.reg.insert(query).subscribe((res:any)=>{
-            console.log(res.data)
-            if(res.data){
+            console.log(res)
+            if(!res.err){
+                this.router.navigate(['/regOk']);
+            }else{
+                switch (res.err){
+                    case 403:
+                        this.fg.controls['vcode'].setErrors({match:true});
+                        break;
+                    default :
+                        break;
 
+                }
             }
+            console.log(this.fg.controls['vcode'].errors)
         })
         //console.log(this.fg)
         //console.log('you submitted value: ', value);
