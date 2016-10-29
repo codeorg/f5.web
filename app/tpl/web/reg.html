@@ -67,247 +67,173 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">公司名称：</label>
+            <label for="phone" class="col-md-2 control-label">手机号码：</label>
             <div class="col-md-10">
                 <div class="w260">
-                    <input name="CompanyName" type="text" class="form-control" maxlength="50" tabIndex=15 onblur="javascript:if(this.value!=''){document.getElementById('not_CompanyName').style.display='none';document.getElementById('correct_CompanyName').style.display='none';$('#star_CompanyName').css('display','none');}chkCompanyName(this.value);" />
+                    <input type="text"
+                           id="phone"
+                           class="form-control"
+                           placeholder="手机号码"
+                           [formControl]="fg.controls['phone']">
                 </div>
                 <div class="form-con">
-                    <div id="star_CompanyName" class="star">商户的公司名称</div>
-                    <div id="not_CompanyName" class="not"></div>
-                    <div id="correct_CompanyName" class="correct"></div>
-                    <div id="error_CompanyName" class="error"></div>
+                    <div *ngIf="fg.controls['phone'].hasError('msg')" class="error">{{fg.controls['phone'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['phone'].pristine" class="star">{{fgConfig.phone[2].default}}</div>
+                    <div *ngIf="fg.controls['phone'].dirty&&fg.controls['phone'].valid" class="correct"></div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">营业执照：</label>
+            <label for="qq" class="col-md-2 control-label">QQ：</label>
             <div class="col-md-10">
                 <div class="w260">
-                    <input name="ZhiZhao" type="text" class="form-control" maxlength="50" tabIndex=16 onblur="javascript:if(this.value!=''){document.getElementById('not_ZhiZhao').style.display='none';document.getElementById('correct_ZhiZhao').style.display='none';$('#star_ZhiZhao').css('display','none');}chkZhiZhao(this.value);" />
+                    <input type="text"
+                           id="qq"
+                           class="form-control"
+                           placeholder="QQ"
+                           [formControl]="fg.controls['qq']">
                 </div>
                 <div class="form-con">
-                    <div id="star_ZhiZhao" class="star">商户的营业执照号</div>
-                    <div id="not_ZhiZhao" class="not"></div>
-                    <div id="correct_ZhiZhao" class="correct"></div>
-                    <div id="error_ZhiZhao" class="error"></div>
+                    <div *ngIf="fg.controls['qq'].hasError('msg')" class="error">{{fg.controls['qq'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['qq'].pristine" class="star">{{fgConfig.qq[2].default}}</div>
+                    <div *ngIf="fg.controls['qq'].dirty&&fg.controls['qq'].valid" class="correct"></div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">经营范围：</label>
+            <label for="url" class="col-md-2 control-label">网站：</label>
             <div class="col-md-10">
                 <div class="w260">
-                    <input name="SiteName" type="text" class="form-control" maxlength="50" tabIndex=17 onblur="javascript:if(this.value!=''){document.getElementById('not_SiteName').style.display='none';document.getElementById('correct_SiteName').style.display='none';$('#star_SiteName').css('display','none');}chkSiteName(this.value);" />
+                    <input type="text"
+                           id="url"
+                           class="form-control"
+                           placeholder="网站"
+                           [formControl]="fg.controls['url']">
                 </div>
                 <div class="form-con">
-                    <div id="star_SiteName" class="star">经营范围</div>
-                    <div id="not_SiteName" class="not"></div>
-                    <div id="correct_SiteName" class="correct"></div>
-                    <div id="error_SiteName" class="error"></div>
+                    <div *ngIf="fg.controls['url'].hasError('msg')" class="error">{{fg.controls['url'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['url'].pristine" class="star">{{fgConfig.url[2].default}}</div>
+                    <div *ngIf="fg.controls['url'].dirty&&fg.controls['url'].valid" class="correct"></div>
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">网站名称：</label>
-            <div class="col-md-10">
-                <div class="w260">
-                    <input name="WebName" type="text" class="form-control" maxlength="50" tabIndex=4 onblur="javascript:if(this.value!=''){document.getElementById('not_WebName').style.display='none';document.getElementById('correct_WebName').style.display='none';$('#star_WebName').css('display','none');}chkWebName(this.value);" />
-                </div>
-                <div class="form-con">
-                    <div id="star_WebName" class="star">网站名称</div>
-                    <div id="not_WebName" class="not"></div>
-                    <div id="correct_WebName" class="correct"></div>
-                    <div id="error_WebName" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="firstname" class="col-md-2 control-label">平台网址：</label>
-            <div class="col-md-10">
-                <div class="w260">
-                    <input id=siteaddr  name=siteaddr maxlength="50" tabIndex=5 value="http://" size=40 class="form-control" onblur="javascript:if(this.value!=''){document.getElementById('not_siteaddr').style.display='none';document.getElementById('error_siteaddr').style.display='none';document.getElementById('correct_siteaddr').style.display='none';}chkSiteUrl(this.value);"/>
-                </div>
-                <div class="form-con">
-                    <div id="star_siteaddr" class="star">平台网址</div>
-                    <div id="not_siteaddr" class="not"></div>
-                    <div id="correct_siteaddr" class="correct"></div>
-                    <div id="error_siteaddr" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">E-mail：</label>
-            <div class="col-md-10">
-                <div class="w160">
-                    <input id=email name=email tabIndex=6 maxlength="40" class="form-control" onblur="javascript:if(this.value!=''){document.getElementById('not_email').style.display='none';document.getElementById('error_email').style.display='none';document.getElementById('correct_email').style.display='none';}chkemail(this.value);"/>
-                </div>
-                <div class="form-con">
-                    <div id="star_email" class="star">邮箱地址</div>
-                    <div id="not_email" class="not">必填</div>
-                    <div id="correct_email" class="correct"></div>
-                    <div id="error_email" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">联系地址</label>
-            <div class="col-md-10">
-                <div class="w160">
-                    <input id=email name=Dizhi tabIndex=18 maxlength="40" class="form-control" onblur="javascript:if(this.value!=''){document.getElementById('not_Dizhi').style.display='none';document.getElementById('error_Dizhi').style.display='none';document.getElementById('correct_Dizhi').style.display='none';}chkDizhi(this.value);"/>
-                </div>
-                <div class="form-con">
-                    <div id="star_Dizhi" class="star">联系地址</div>
-                    <div id="not_Dizhi" class="not">必填</div>
-                    <div id="correct_Dizhi" class="correct"></div>
-                    <div id="error_Dizhi" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">QQ号码</label>
-            <div class="col-md-10">
-                <div class="w160">
-                    <input id=oicq  name=oicq   maxlength="13" tabIndex=7 class="form-control" onblur="javascript:if(this.value!=''){document.getElementById('not_oicq').style.display='none';document.getElementById('error_oicq').style.display='none';document.getElementById('correct_oicq').style.display='none';}chkqq(this.value);"/>
-                </div>
-                <div class="form-con">
-                    <div id="star_oicq" class="star">联系人QQ号码</div>
-                    <div id="not_oicq" class="not"></div>
-                    <div id="correct_oicq" class="correct"></div>
-                    <div id="error_oicq" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">手机号码</label>
-            <div class="col-md-10">
-                <div class="w160">
-                    <input id=movephone name=movephone tabIndex=8  maxlength="20" class="form-control" onblur="javascript:if(this.value!=''){document.getElementById('not_movephone').style.display='none';document.getElementById('error_movephone').style.display='none';document.getElementById('correct_movephone').style.display='none';}chkphone(this.value);"/>
-                </div>
-                <div class="form-con">
-                    <div id="star_movephone" class="star">联系人手机号码</div>
-                    <div id="not_movephone" class="not">必填</div>
-                    <div id="correct_movephone" class="correct"></div>
-                    <div id="error_movephone" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">网站备案号</label>
-            <div class="col-md-10">
-                <div class="w160">
-                    <input id=webIcp  name=webIcp  tabIndex=14 maxlength="18" class="form-control" onblur="javascript:if(this.value!=''){document.getElementById('not_webIcp').style.display='none';document.getElementById('error_webIcp').style.display='none';document.getElementById('correct_webIcp').style.display='none';}chkwebIcp(this.value);"/>
-                </div>
-                <div class="form-con">
-                    <div id="star_webIcp" class="star">网站ICP备号</div>
-                    <div id="not_webIcp" class="not"></div>
-                    <div id="correct_webIcp" class="correct"></div>
-                    <div id="error_webIcp" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="line"></div>
 
+        <div class="line"></div>
         <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">开户银行：</label>
+            <label for="bank_type" class="col-md-2 control-label">银行类型：</label>
             <div class="col-md-10">
-                <div class="w160" id="province">
-                    <input type="text" class="form-control"  id="prv" name="prv" tabIndex="9" type="text" value="----选择银行----" onblur="javascript:if(this.value!=''){document.getElementById('not_prv').style.display='none';document.getElementById('error_prv').style.display='none';document.getElementById('correct_prv').style.display='none';}chkprv(this.value);" readonly />
+                <div class="w160" id="bank_type" (click)="btShow=!btShow" >
+                    <input type="hidden"
+                           class="form-control"
+                           placeholder="银行类型"
+                           style="cursor: pointer"
+                           [formControl]="fg.controls['bank_type']" readonly>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="银行类型"
+                           style="cursor: pointer"
+                           value="{{fg.controls['bank_type'].value|banksort}}" readonly>
+
+                    <!--<input type="text" class="form-control"  id="prv" name="prv" tabIndex="9" type="text" value="&#45;&#45;&#45;&#45;选择银行&#45;&#45;&#45;&#45;" readonly />-->
                     <div class="btn-an"></div>
                 </div>
                 <div class="form-con">
-                    <div id="star_prv" class="star">请选择开户银行或支付宝</div>
-                    <div id="not_prv" class="not"></div>
-                    <div id="correct_prv" class="correct"></div>
-                    <div id="error_prv" class="error"></div>
+                    <div *ngIf="fg.controls['bank_type'].hasError('msg')" class="error">{{fg.controls['bank_type'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['bank_type'].pristine" class="star">{{fgConfig.bank_type[2].default}}</div>
+                    <div *ngIf="fg.controls['bank_type'].dirty&&fg.controls['bank_type'].valid" class="correct"></div>
                 </div>
                 <!--#省份弹框-->
-                <div class="tk-box province">
-                    <div class="list" id="options"> <a href="javascript:void(0);" rel="支付宝账户">支付宝账户</a> <a href="javascript:void(0);" rel="中国银行">中国银行</a> <a href="javascript:void(0);" rel="中国建设银行">中国建设银行</a> <a href="javascript:void(0);" rel="中国农业银行">中国农业银行</a> <a href="javascript:void(0);" rel="中国工商银行">中国工商银行</a> <a href="javascript:void(0);" rel="交通银行">交通银行</a> <a href="javascript:void(0);" rel="招商银行">招商银行</a> <a href="javascript:void(0);" rel="兴业银行">兴业银行</a> <a href="javascript:void(0);" rel="光大银行">光大银行</a> <a href="javascript:void(0);" rel="中信银行">中信银行</a> <a href="javascript:void(0);" rel="上海浦发银行">上海浦发银行</a> <a href="javascript:void(0);" rel="平安银行">平安银行</a><a href="javascript:void(0);" rel="杭州银行">杭州银行</a> </div>
+                <div *ngIf="btShow" class="tk-box province">
+                    <div class="list" id="options">
+                        <a (click)="fg.controls['bank_type'].setValue(bs.id);btShow=false;" *ngFor="let bs of banksort" style="cursor: pointer"> {{bs.id | banksort}}</a>
 
-
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">账户号：</label>
+            <label for="name" class="col-md-2 control-label">姓名：</label>
             <div class="col-md-10">
                 <div class="w260">
-                    <input name="AccNum" type="text" class="form-control" maxlength="50" tabIndex=10 onblur="javascript:if(this.value!=''){document.getElementById('not_AccNum').style.display='none';document.getElementById('correct_AccNum').style.display='none';$('#star_AccNum').css('display','none');}chkAccNum(this.value);" />
+                    <input type="text"
+                           id="name"
+                           class="form-control"
+                           placeholder="姓名"
+                           [formControl]="fg.controls['name']">
                 </div>
                 <div class="form-con">
-                    <div id="star_AccNum" class="star">银行账户号或支付宝账户号</div>
-                    <div id="not_AccNum" class="not"></div>
-                    <div id="correct_AccNum" class="correct"></div>
-                    <div id="error_AccNum" class="error"></div>
+                    <div *ngIf="fg.controls['name'].hasError('msg')" class="error">{{fg.controls['name'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['name'].pristine" class="star">{{fgConfig.name[2].default}}</div>
+                    <div *ngIf="fg.controls['name'].dirty&&fg.controls['name'].valid" class="correct"></div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">账户姓名：</label>
+            <label for="account" class="col-md-2 control-label">银行卡号：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="account"
+                           class="form-control"
+                           placeholder="银行卡号"
+                           [formControl]="fg.controls['account']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['account'].hasError('msg')" class="error">{{fg.controls['account'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['account'].pristine" class="star">{{fgConfig.name[2].default}}</div>
+                    <div *ngIf="fg.controls['account'].dirty&&fg.controls['account'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="idcard" class="col-md-2 control-label">身份证：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="idcard"
+                           class="form-control"
+                           placeholder="身份证"
+                           [formControl]="fg.controls['idcard']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['idcard'].hasError('msg')" class="error">{{fg.controls['idcard'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['idcard'].pristine" class="star">{{fgConfig.idcard[2].default}}</div>
+                    <div *ngIf="fg.controls['idcard'].dirty&&fg.controls['idcard'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+
+
+
+
+        <div class="form-group">
+            <label for="vcode" class="col-md-2 control-label">验证码：</label>
             <div class="col-md-10">
                 <div class="w160">
-                    <input name="AccName" type="text" class="form-control" maxlength="50" tabIndex=11 onblur="javascript:if(this.value!=''){document.getElementById('not_AccName').style.display='none';document.getElementById('correct_AccName').style.display='none';$('#star_AccName').css('display','none');}chkAccName(this.value);" />
+                    <input type="text"
+                           id="vcode"
+                           class="form-control"
+                           placeholder="验证码"
+                           [formControl]="fg.controls['vcode']">
                 </div>
                 <div class="form-con">
-                    <div id="star_AccName" class="star">银行账户真实姓名或支付宝账户真实姓名</div>
-                    <div id="not_AccName" class="not"></div>
-                    <div id="correct_AccName" class="correct"></div>
-                    <div id="error_AccName" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">开户银行所在地：</label>
-            <div class="col-md-10">
-                <div class="w260">
-                    <input name="BankAddress" type="text" class="form-control" maxlength="50" tabIndex=12 onblur="javascript:if(this.value!=''){document.getElementById('not_BankAddress').style.display='none';document.getElementById('correct_BankAddress').style.display='none';$('#star_BankAddress').css('display','none');}chkBankAddress(this.value);" />
-                </div>
-                <div class="form-con">
-                    <div id="star_BankAddress" class="star">开户银行所在地</div>
-                    <div id="not_BankAddress" class="not"></div>
-                    <div id="correct_BankAddress" class="correct"></div>
-                    <div id="error_BankAddress" class="error"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">身份证号码：</label>
-            <div class="col-md-10">
-                <div class="w260">
-                    <input maxlength="18" class="form-control" />
-                </div>
-                <div class="form-con">
-                    <div id="star_sfznum" class="star">身份证号码</div>
-                    <div id="not_sfznum" class="not"></div>
-                    <div id="correct_sfznum" class="correct"></div>
-                    <div id="error_sfznum" class="error"></div>
-                </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label for="lastname" class="col-md-2 control-label">验证码：</label>
-            <div class="col-md-10">
-                <div class="w160">
-                    <input id="yzm" name="yzm" tabindex="15" maxlength="8" class="form-control" onblur="javascript:if(this.value!=''){document.getElementById('not_yzm').style.display='none';document.getElementById('error_yzm').style.display='none';document.getElementById('correct_yzm').style.display='none';}chkwebcode(this.value);">
-                </div>
-                <div class="form-con">
-                    <div id="star_yzm" class="star"></div>
-                    <div id="not_yzm" class="not" style="float:left;"></div>
-                    <div id="correct_yzm" class="correct"></div>
-                    <div id="error_yzm" class="error"></div>
-                    <img src="../../inc/safecode.asp?rndid=734100.98643703445667" id="checkcode" style="display:block;float:left;width:90px;height:35px;" onclick="this.src='../../inc/safecode.asp?rndid=73410' + Math.random()" alt="看不清楚换一张">
+                    <img style=" margin-top: 0px;width:90px;height:38px; cursor: pointer"  (click)="getCap()"  title="点击换一张" alt="点击换一张" [src]="img">
+
+                    <div style="margin-left: 97px;" *ngIf="fg.controls['vcode'].dirty&&fg.controls['vcode'].hasError('match')"  class="error"></div>
+                    <div style="margin-left: 97px;" *ngIf="fg.controls['vcode'].dirty&&fg.controls['vcode'].valid" class="correct"></div>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <div style="margin-left:200px;">
-                <div style="float:left; line-height:30px;"><input type="checkbox" name="chkxy" id="chkxy" checked="checked" onclick="javascript:if(this.checked==true){document.getElementById('not_chkxy').style.display='none';}chkchkxy(this.checked);" />&nbsp;《我已仔细阅读并接受<a href="agreement.html" target="_blank" style="text-decoration:underline;cursor:pointer;color:#ff5000;">多宝通服务条款</a>》</div>
+                <div style="float:left; line-height:30px;"><input [formControl]="fg.controls['check_service']" type="checkbox" name="chkxy"/>&nbsp;《我已仔细阅读并接受<a href="agreement.html" target="_blank" style="text-decoration:underline;cursor:pointer;color:#ff5000;">付网服务条款</a>》</div>
                 <div class="form-con">
-                    <div id="not_chkxy" class="not" ></div>
+                    <div *ngIf="!fg.controls['check_service'].value" class="error" style="margin-top: 6px;" ></div>
                 </div>
             </div>
         </div>
@@ -315,7 +241,7 @@
         <div class="form-group">
             <div class="col-offset-2 col-md-10">
                 <div class="btn-submit">
-                    <button   class="btn btn-success card_block"><i class="fa fa-check fa-fw"></i>立即注册</button>
+                    <button class="btn btn-success card_block" (click)="onSubmit()" [disabled]="fg.invalid"><i class="fa fa-check fa-fw"></i>立即注册</button>
                 </div>
             </div>
         </div>

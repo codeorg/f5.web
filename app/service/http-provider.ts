@@ -69,8 +69,10 @@ export class HttpProvider {
         "insert"
     ];
     //public modules:string[] = ['login', 'user', 'demo'];
+    public cache:any;
     public user:any;
     public login:any;
+    public reg:any;
     public demo:any;
 
     create(  _path:string) {
@@ -80,9 +82,13 @@ export class HttpProvider {
         else
             this.host+=_path+"/";
 
+        this.cache=new FNS(this,"cache").create();
         this.user=new FNS(this,"user").create();
         this.login=new FNS(this,"login").create();
+        this.reg=new FNS(this,"reg").create();
+
         this.demo=new FNS(this,"demo").create();
+
 
         //this.modules.forEach(m=>this["login"]=new FNS(this,m).create());
     }

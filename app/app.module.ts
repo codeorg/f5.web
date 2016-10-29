@@ -7,13 +7,11 @@ import {
 
 import { HttpModule }    from '@angular/http';
 import { utility } from './service/utility';
-
 import { AppComponent } from './app.component';
-import { AppRouterMoudule }         from './app-router.module';
+import { AppRouterModule }         from './app-router.module';
 import { WebModule }         from './web/web.module';
 import { UserModule }         from './user/user.module';
 import { User2Module }         from './user2/module';
-
 
 @NgModule({
   imports: [
@@ -24,7 +22,7 @@ import { User2Module }         from './user2/module';
     UserModule,
     User2Module,
     WebModule,
-    AppRouterMoudule
+    AppRouterModule
   ],
   bootstrap: [AppComponent],
   declarations: [AppComponent],
@@ -32,6 +30,6 @@ import { User2Module }         from './user2/module';
 })
 export class AppModule {
   constructor(){
-    utility.browserId();
+    //utility.browserId();
   }
 }

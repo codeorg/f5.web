@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: `
-    <p>user test1</p>
-  `
+  template: `test1 `
 })
 export class Test1Component { }
 

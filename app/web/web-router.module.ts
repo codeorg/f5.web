@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router';
 
 import {BidResolve} from '../service/bid-resolve.service';
 
+
 import {Test1Component} from './test1.component';
 import {Test2Component} from './test2.component';
 import {DefaultComponent} from './default.component';

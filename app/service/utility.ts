@@ -1,15 +1,19 @@
 /**
  * Created by Administrator on 2016/10/21.
  */
+import {Observable} from "rxjs";
+import 'rxjs/add/operator/toPromise';
 import * as _ from 'lodash';
 import apply = Reflect.apply;
 //declare var Fingerprint2:any;
 declare var window:any;
 let Fingerprint2=require('../lib/fingerprint2');
 let DateFormat=require('../lib/dateFormat');
+
 export class utility {
-    public static _dateFormat=new DateFormat();
-    public static Bid:string="";
+    public static _dateFormat = new DateFormat();
+    public static Bid: string = "";
+
     static toInt(value?: any): number {
         return _.toInteger(value);
     }
@@ -44,12 +48,12 @@ export class utility {
         _.isPlainObject(value)
     }
 
-    static drop(array:any[],num?:number){
-        return _.drop(array,num);
+    static drop(array: any[], num?: number) {
+        return _.drop(array, num);
     }
 
-    static dropRight(array:any[],num?:number){
-        return _.dropRight(array,num);
+    static dropRight(array: any[], num?: number) {
+        return _.dropRight(array, num);
     }
 
 
@@ -60,7 +64,7 @@ export class utility {
     static format(str: string, ...params: string[]): string {
         var formatRegExp = /%[sdj%]/g;
         var i = 1;
-        var args:any[] = [];
+        var args: any[] = [];
         args.push(str);
         [].push.apply(args, params);
 
@@ -117,20 +121,21 @@ export class utility {
     }
 
     //扩展对象，不创建新对象
-    static extend(...objs: Object[]){
-        if(!objs||objs.length==0) return;
-        let obj=objs[0];
-        for(let i=1;i<objs.length; i++){
-            _.assignIn(obj,objs[i]);
+    static extend(...objs: Object[]) {
+        if (!objs || objs.length == 0) return;
+        let obj = objs[0];
+        for (let i = 1; i < objs.length; i++) {
+            _.assignIn(obj, objs[i]);
         }
         return obj;
     }
+
     //合并并且创建新对象
     static concat(...objs: Object[]) {
-        let o={};
-        _.assignIn(o,objs[0]);
-        objs[0]=o;
-        return utility.extend.apply(this,objs);
+        let o = {};
+        _.assignIn(o, objs[0]);
+        objs[0] = o;
+        return utility.extend.apply(this, objs);
     }
 
     //查找对象
@@ -143,29 +148,28 @@ export class utility {
         return _.indexOf(arr, value);
     }
 
-    static findIndex(ary:any[], obj:Object) {
+    static findIndex(ary: any[], obj: Object) {
         return _.findIndex(ary, obj);
     }
 
-    static random(start:number, end:number):number {
+    static random(start: number, end: number): number {
         return _.random(start, end)
     }
 
     //{b:1,a:2,c:3} =>{a:2,b:1,c:3}
-    static sort(obj?:any):any {
+    static sort(obj?: any): any {
         if (_.isArray(obj)) return _.sortBy(obj);
-        let o:any = {};
-        let arr:any[] = _.sortBy(_.keys(obj));
-        _.forEach(arr,  (value) =>{
+        let o: any = {};
+        let arr: any[] = _.sortBy(_.keys(obj));
+        _.forEach(arr, (value) => {
             o[value] = obj[value];
         });
         return o
     }
 
 
-
     //可以只有date(format)
-    static formatDate(dateTime?:any,format?:string):string {
+    static formatDate(dateTime?: any, format?: string): string {
         if (!dateTime)dateTime = new Date();
         let testD: any;
         testD = new Date(dateTime);
@@ -176,22 +180,22 @@ export class utility {
     }
 
     //获取距离1970-1-1的ms(以天为单位)
-    static dayTime(dateTime?:any) :number{
+    static dayTime(dateTime?: any): number {
         if (!dateTime)dateTime = new Date();
         dateTime = utility.formatDate(dateTime, 'yyyy-mm-dd 00:00:00')
-        console.log("dt",dateTime)
+        console.log("dt", dateTime)
 
         dateTime = new Date(dateTime);
         return dateTime.getTime();
     }
 
     //增加/减少天数，默认下一天
-     static setDay(dateTime?:any,inc?:number):number {
-         if (!inc) inc = 1;
-         if (!dateTime)dateTime = new Date();
-         if (typeof dateTime == "string" || typeof dateTime == "number") dateTime = new Date(dateTime);
-         return utility.dayTime(dateTime.setDate(dateTime.getDate() + inc));
-     }
+    static setDay(dateTime?: any, inc?: number): number {
+        if (!inc) inc = 1;
+        if (!dateTime)dateTime = new Date();
+        if (typeof dateTime == "string" || typeof dateTime == "number") dateTime = new Date(dateTime);
+        return utility.dayTime(dateTime.setDate(dateTime.getDate() + inc));
+    }
 
 
     static decodeUrl(value: string): string {
@@ -208,14 +212,14 @@ export class utility {
 
     //----------ls　开始　------------------------------
     static ls = (function () {
-        let storageType:string = 'localStorage', prefix:string = 'codeorg.', webStorage:any= window[storageType];
-        let deriveQualifiedKey =  (key:string)=> {
+        let storageType: string = 'localStorage', prefix: string = 'codeorg.', webStorage: any = window[storageType];
+        let deriveQualifiedKey = (key: string)=> {
             return prefix + key;
         };
         //是否支持
-        var isSupported:boolean = (function () {
+        var isSupported: boolean = (function () {
             try {
-                var supported:boolean = (storageType in window && window[storageType] !== null);
+                var supported: boolean = (storageType in window && window[storageType] !== null);
                 var key = deriveQualifiedKey('__' + new String(Math.round(Math.random() * 1e7)));
                 if (supported) {
                     webStorage = window[storageType];
@@ -230,7 +234,7 @@ export class utility {
             }
         }());
 
-        var setLS = function (key:any, value:any) {
+        var setLS = function (key: any, value: any) {
             //if (!isSupported) return;
             if (!value) {
                 value = "";
@@ -243,7 +247,7 @@ export class utility {
             }
         };
 
-        var getLS = function (key:any) {
+        var getLS = function (key: any) {
             //if (!isSupported) return null;
             var item = webStorage ? webStorage.getItem(deriveQualifiedKey(key)) : null;
             //item = decodeUrl(item);
@@ -251,15 +255,15 @@ export class utility {
                 return null;
             }
 
-            if (utility.isObject(item))return JSON.parse(item);
+            //if (utility.isObject(item))return JSON.parse(item);
 
-            // if (item.charAt(0) === "{" || item.charAt(0) === "[" || utility.isFloat(item)) {
-            //     return JSON.parse(item);
-            // }
+            if (item.charAt(0) === "{" || item.charAt(0) === "[" || utility.isNumber(item)) {
+                return JSON.parse(item);
+            }
             return item;
         };
 
-        var removeLS = function (key:any) {
+        var removeLS = function (key: any) {
             if (!isSupported && !webStorage) return;
             webStorage.removeItem(deriveQualifiedKey(key));
         };
@@ -282,13 +286,20 @@ export class utility {
     })();
     //----------ls　开始　------------------------------
 
-    static browserId():Promise<any> {
-        return new Promise((resolve,reject)=>{
-            new Fingerprint2().get((result:any, components:any)=> {
-                utility.Bid=result;
-                return resolve(result)
+    static browserId(): Observable<string> {
+        return new Observable((ob: any)=> {
+            new Fingerprint2().get((result: any, components: any)=> {
+                utility.Bid = result;
+                ob.next(result);
+                ob.complete();
             });
         })
+        // return new Promise((resolve,reject)=>{
+        //     new Fingerprint2().get((result:any, components:any)=> {
+        //         utility.Bid=result;
+        //         return resolve(result)
+        //     });
+        // })
     }
 
 }
