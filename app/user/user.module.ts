@@ -1,29 +1,21 @@
 import { NgModule }       from '@angular/core';
 import {CodeorgModule} from '../codeorg.module';
 import { RouterModule } from '@angular/router';
+import { DropdownModule } from 'ng2-bootstrap/components/dropdown';
 
-import { FrameComponent }     from './frame.component';
-import { DefaultComponent }       from './default.component';
-import { Test1Component } from './test1.component';
-import { Test2Component } from './test2.component';
-
-import { UserRouterModule } from './user-router.module';
+import { UserRoutes,Declarations,Providers } from './user.routes';
 
 @NgModule({
   imports: [
     CodeorgModule,
-    UserRouterModule
+    DropdownModule,
+    RouterModule.forChild(UserRoutes)
   ],
-  declarations: [
-    FrameComponent,
-    DefaultComponent,
-    Test1Component,
-    Test2Component,
-  ],
+  declarations: Declarations,
   exports: [
     RouterModule
   ],
-  providers: []
+  providers: Providers
 })
 export class UserModule {}
 

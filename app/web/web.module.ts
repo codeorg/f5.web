@@ -1,33 +1,21 @@
 import { NgModule }       from '@angular/core';
 import { RouterModule }   from '@angular/router';
 import {CodeorgModule} from '../codeorg.module';
+import {AlertModule}  from 'ng2-bootstrap/components/alert';
 
-import { FrameComponent }     from './frame.component';
-import { DefaultComponent }       from './default.component';
-import { RegOkComponent } from './reg-ok.component';
-import {RegComponent} from './reg.component';
 
-import {ErrorComponent} from './error.component';
-
-import { WebRouterMoudule } from './web-router.module';
+import { WebRoutes,Declarations,Providers } from './web.routes';
 
 
 @NgModule({
   imports: [
     CodeorgModule,
-    WebRouterMoudule
+    AlertModule,
+    RouterModule.forChild(WebRoutes)
   ],
-  declarations: [
-    FrameComponent,
-    DefaultComponent,
-    RegOkComponent,
-    RegComponent,
-    ErrorComponent,
-  ],
-  exports: [
-    RouterModule
-  ],
-  providers: []
+  declarations: Declarations,
+  exports:[RouterModule],
+  providers: Providers
 })
 export class WebModule {}
 

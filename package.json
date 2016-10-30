@@ -3,17 +3,16 @@
   "version": "1.0.1",
   "description": "Angular 2 AOT ",
   "scripts": {
-    "ngc": "ngc -p ./tsconfig.aot.json",
+    "ngc": "rimraf ./aot && ngc -p ./tsconfig.aot.json",
     "webpack-lib": "webpack --progress --config webpack.lib.config.js",
     "webpack-jit": "webpack --progress --config webpack.jit.config.js",
     "webpack-aot": "webpack --progress --config webpack.aot.config.js --optimize-minimize",
     "jit": "npm run webpack-jit && webpack-dev-server --config webpack.jit.config.js --port 4201",
-    "aot": "npm run ngc && npm run copy && npm run webpack-aot && webpack-dev-server --config webpack.aot.config.js --port 4202",
+    "aot": "rimraf ./dist/aot && npm run ngc && npm run copy && npm run webpack-aot && webpack-dev-server --config webpack.aot.config.js --port 4202",
     "build-jit": "npm run webpack-jit",
     "build-aot": "npm run ngc && npm run webpack-aot",
     "demo": "rimraf ./dist && npm run build-jit && npm run build-aot",
-    "copy":"ncp ./app/sub ./aot/app/sub"
-
+    "copy": "ncp ./app/sub ./aot/app/sub"
   },
   "keywords": [
     "angular2",
@@ -66,6 +65,7 @@
     "@types/lodash": "^4.14.37",
     "awesome-typescript-loader": "^2.2.4",
     "lodash": "^4.16.4",
+    "ng2-bootstrap": "^1.1.16",
     "rxjs": "^5.0.0-rc.1"
   }
 }

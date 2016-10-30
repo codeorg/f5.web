@@ -1,9 +1,8 @@
 
 import {Http} from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import {utility} from "./utility";
-import {Observable} from "rxjs";
-
+import {Observable} from 'rxjs/Rx';
+//import 'rxjs/add/operator/toPromise';
 
 
 //所有方法

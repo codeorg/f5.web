@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { utility } from '../service/utility';
+import { utility } from '../common/utility';
 
 @Component({
   template: `
@@ -7,7 +7,7 @@ import { utility } from '../service/utility';
       <p>bid:{{"2"|test}} {{"ICBC"|bs}}</p>
   `
 })
-export class Test1Component {
+export class AccountInfoComponent {
   bid:string=utility.Bid;
 }
 

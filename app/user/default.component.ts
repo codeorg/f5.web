@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   template: `
-aaaaaaaa
+<button (click)="onClick()">btn</button>
 
 
     <router-outlet></router-outlet>
@@ -17,7 +17,9 @@ export class DefaultComponent implements OnInit {
       private router: Router
   ) { }
 
-
+  onClick(){
+    console.log(111)
+  }
 
   ngOnInit() {
 

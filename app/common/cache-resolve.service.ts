@@ -2,8 +2,7 @@ import { Injectable }             from '@angular/core';
 import { Router, Resolve,
     ActivatedRouteSnapshot } from '@angular/router';
 
-import {Observable} from "rxjs";
-import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Rx';
 import { utility } from './utility';
 import { Http } from './http';
 

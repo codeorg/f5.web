@@ -1,11 +1,9 @@
 /**
  * Created by Administrator on 2016/10/21.
  */
-import {Observable} from "rxjs";
-import 'rxjs/add/operator/toPromise';
+import {Observable} from "rxjs/Rx";
 import * as _ from 'lodash';
-import apply = Reflect.apply;
-//declare var Fingerprint2:any;
+
 declare var window:any;
 let Fingerprint2=require('../lib/fingerprint2');
 let DateFormat=require('../lib/dateFormat');
@@ -131,11 +129,15 @@ export class utility {
     }
 
     //合并并且创建新对象
-    static concat(...objs: Object[]) {
+    static assignIn(...objs: Object[]) {
         let o = {};
         _.assignIn(o, objs[0]);
         objs[0] = o;
         return utility.extend.apply(this, objs);
+    }
+    //合并
+    static concat(...objs: any[]){
+        return _.concat.apply(this, objs);
     }
 
     //查找对象

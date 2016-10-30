@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -8,20 +8,20 @@ import {
 } from '@angular/forms';
 
 import {ActivatedRoute, Router, Params} from '@angular/router';
-import {Http} from '../service/http';
-import {HttpUser} from '../service/http-user';
-import {utility} from '../service/utility';
-import {form} from '../service/form';
+//import {Http} from '../common/http';
+//import {HttpUser} from '../common/http-user';
+// import {utility} from '../common/utility';
+// import {BaseComponent} from '../common/base-componet';
+// import {form} from '../common/form';
+import {utility,BaseComponent,form,Http,HttpUser} from  '../common';
 import {Observable} from 'rxjs/Rx';
-import 'rxjs/Rx';
-
 @Component({
     styleUrls: ['../css/web/common.css', '../css/web/login.css'],
 
     templateUrl: '../tpl/web/reg.html',
     providers: [Http, HttpUser],
 })
-export class RegComponent implements OnInit {
+export class RegComponent extends BaseComponent {
     fg: FormGroup;
     fgConfig: any;
     username: AbstractControl;
@@ -31,6 +31,7 @@ export class RegComponent implements OnInit {
     public banksort:any[];
 
     constructor(private http: Http, private fb: FormBuilder,protected router:Router) {
+        super();
         this.banksort=utility.ls.get("banksort");
 
         console.log(this.banksort)
@@ -55,6 +56,15 @@ export class RegComponent implements OnInit {
                 switch (res.err){
                     case 403:
                         this.fg.controls['vcode'].setErrors({match:true});
+                        break;
+                    case 406:
+                        this.fg.controls['username'].setErrors({exist: true, msg: this.fgConfig.username[2].exist});
+                        break;
+                    case 407:
+                        this.fg.controls['password'].setErrors({required: true, msg: this.fgConfig.password[2].required});
+                        break;
+                    case 408:
+                        this.fg.controls['password2'].setErrors({double: true, msg: this.fgConfig.password2[2].double});
                         break;
                     default :
                         break;
@@ -167,17 +177,19 @@ export class RegComponent implements OnInit {
                 }]
 
         };
-        this.fg = form.getFormGroup(this.fb, this.fgConfig);
+        this.fg = form.getFormGroup(this.fb, this.fgConfig,this.subscription);
         this.username = this.fg.controls['username'];
-        this.username.valueChanges
+       let usernameSubscription=this.username.valueChanges
             .debounceTime(500)
             .distinctUntilChanged()
             .flatMap(v=>this.http.user.exist({username: v}))
             .subscribe((res: any) => {
                 if (res.data) this.username.setErrors({"exist": true, msg: this.fgConfig.username[2].exist});
             });
+        this.subscription.push(usernameSubscription);
+
         let password2 = this.fg.controls['password2'];
-        password2.valueChanges
+        let password2Subscription=password2.valueChanges
         //.debounceTime(300)
         //.distinctUntilChanged()
             .subscribe((v: any)=> {
@@ -186,9 +198,9 @@ export class RegComponent implements OnInit {
                     msg: this.fgConfig.password2[2].double
                 });
             });
+        this.subscription.push(password2Subscription);
         let vcode = this.fg.controls['vcode'];
-
-        vcode.valueChanges
+        let vcodeSubscription=vcode.valueChanges
             .distinctUntilChanged()
             .flatMap((v: any)=> {
                 if (v.length == 4) {
@@ -218,11 +230,8 @@ export class RegComponent implements OnInit {
                 }
 
             });
-
-
+        this.subscription.push(vcodeSubscription);
         this.getCap();
-
-
     }
 
 

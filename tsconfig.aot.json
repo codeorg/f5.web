@@ -18,7 +18,7 @@
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
-    "useCache": true,
+    "useCache": false,
     "useBabel": true,
     "babelCore": "babel-core"
   },

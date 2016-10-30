@@ -2,8 +2,8 @@
  * Created by Administrator on 2016/10/21.
  */
 import {Injectable,ReflectiveInjector ,Injector} from '@angular/core';
-import {Http as HTTP,BaseRequestOptions} from '@angular/http';
-import {MockBackend} from '@angular/http/testing';
+import {Http as HTTP} from '@angular/http';
+//import {MockBackend} from '@angular/http/testing';
 import {Router} from '@angular/router';
 import {HttpProvider} from './http-provider';
 

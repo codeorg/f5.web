@@ -1,5 +1,5 @@
-import '@angular/forms';
-import '@angular/router';
-import '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import  'ng2-bootstrap/components/alert';
+import 'rxjs/Rx';
+
+
 
