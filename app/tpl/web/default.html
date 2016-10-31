@@ -14,10 +14,10 @@
                                     <dl class="xl_info clearfix">
                                         <dt class="hide">登录</dt>
                                         <dd><input type="text"
-                                                   id="username"
+                                                   id="email"
                                                    class="form-control"
-                                                   placeholder="用户名"
-                                                   [formControl]="fg.controls['username']">
+                                                   placeholder="Email"
+                                                   [formControl]="fg.controls['email']">
                                         </dd>
                                         <dd><input type="password"
                                                      id="password"
@@ -25,7 +25,7 @@
                                                      placeholder="请输入您的密码"
                                                      [formControl]="fg.controls['password']">
                                         </dd>
-                                        <dd style="margin-top: 10px" *ngIf="fg.controls['username'].hasError('msg')||fg.controls['password'].hasError('msg')"><alert [type]="'danger'">{{fg.controls['username'].errors?.msg||fg.controls['password'].errors?.msg}}</alert></dd>
+                                        <dd style="margin-top: 10px" *ngIf="fg.controls['email'].hasError('msg')||fg.controls['password'].hasError('msg')"><alert [type]="'danger'">{{fg.controls['email'].errors?.msg||fg.controls['password'].errors?.msg}}</alert></dd>
                                         <dd><input class="button white radius4 dl " type="button" (click)="onClick()" value="登录" /></dd>
                                         <dd> <input class="button blue radius4 shenqing" type="button" value="注册" routerLink="/reg" /><input class="button blue radius4 lj" type="button" value="忘记密码" /></dd>
                                     </dl>

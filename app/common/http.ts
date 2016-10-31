@@ -20,7 +20,7 @@ export class Http extends HttpProvider{
         this.create("web");
     }
     httpHandle(response:any){
-        if(response.err==401) this.router.navigate(['/user/test1']);
+        if(response.err==401) this.router.navigate(['/']);
     }
 }
 

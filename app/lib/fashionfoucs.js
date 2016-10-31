@@ -47,11 +47,16 @@
         curIndex = index;
     }
 
+    var _time=null;
+    function destroy() {
+        window.clearInterval(_time);
+    }
+
     function animation() {
         var _bannerList=$('#banner_list .banner_box'),
             _listLength=2,
-            _gbTime=1,
-            _time=null;
+            _gbTime=1;
+
 
         /*Loading Delay*/
         function loadDelay(){
@@ -100,6 +105,7 @@
 
     return {
         animation:animation,
+        destroy:destroy,
         show:show,
         autoSlide:autoSlide,
         click:function (index) {

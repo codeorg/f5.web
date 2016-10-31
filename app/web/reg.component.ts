@@ -24,7 +24,7 @@ import {Observable} from 'rxjs/Rx';
 export class RegComponent extends BaseComponent {
     fg: FormGroup;
     fgConfig: any;
-    username: AbstractControl;
+    email: AbstractControl;
     img: string = "";
     vid: string = "";
     btShow: boolean;
@@ -58,10 +58,10 @@ export class RegComponent extends BaseComponent {
                         this.fg.controls['vcode'].setErrors({match:true});
                         break;
                     case 406:
-                        this.fg.controls['username'].setErrors({exist: true, msg: this.fgConfig.username[2].exist});
+                        this.fg.controls['email'].setErrors({exist: true, msg: this.fgConfig.email[2].exist});
                         break;
                     case 407:
-                        this.fg.controls['password'].setErrors({required: true, msg: this.fgConfig.password[2].required});
+                        this.fg.controls['password'].setErrors({required: true, msg: this.fgConfig.email[2].required});
                         break;
                     case 408:
                         this.fg.controls['password2'].setErrors({double: true, msg: this.fgConfig.password2[2].double});
@@ -77,14 +77,14 @@ export class RegComponent extends BaseComponent {
         //console.log('you submitted value: ', value);
     }
 
-    onBlurUsername() {
-        //this.username.errors=this.username.errors||{}
-        console.log("this.username.errors", this.username.errors)
+    onBluremail() {
+        //this.email.errors=this.email.errors||{}
+        console.log("this.email.errors", this.email.errors)
 
-        // if(this.username.invalid) return;
-        // this.usernameAsync=true;
-        // this.http.user.exist({username:this.username.value}).then((res:any)=>{
-        //     this.usernameAsync=false;
+        // if(this.email.invalid) return;
+        // this.emailAsync=true;
+        // this.http.user.exist({email:this.email.value}).then((res:any)=>{
+        //     this.emailAsync=false;
         //     //if(res.data)
         // })
         //console.log(111);
@@ -93,14 +93,14 @@ export class RegComponent extends BaseComponent {
 
     ngOnInit() {
         this.fgConfig = {
-            'username': ['',
+            'email': ['',
                 [Validators.required, Validators.maxLength(10), //Validators.pattern("^[a-zA-Z0-9_-][\w.]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$")
                      ],
                 {
-                    required: "用户名不能为空",
+                    required: "Email不能为空",
                     maxlength: "长度不能超过10字节",
                     //pattern: "email格式不对",
-                    exist: "用户名已经存在",
+                    exist: "Email已经存在",
                     default: "3~18位的数字、字母组成,不支持特殊符号"
                 }],
             'password': ['',
@@ -108,7 +108,7 @@ export class RegComponent extends BaseComponent {
                 {
                     required: "密码不能为空",
                     minlength: "长度不能少于6",
-                    exist: "用户名已经存在",
+                    exist: "Email已经存在",
                     default: "6位以上字母字符"
                 }],
             'password2': ['',
@@ -117,7 +117,7 @@ export class RegComponent extends BaseComponent {
                     required: "密码不能为空",
                     minlength: "长度不能少于6",
                     double: "两次密码必须相同",
-                    exist: "用户名已经存在",
+                    exist: "Email已经存在",
                     default: "6位以上字母字符"
                 }],
             'phone': ['',
@@ -178,15 +178,15 @@ export class RegComponent extends BaseComponent {
 
         };
         this.fg = form.getFormGroup(this.fb, this.fgConfig,this.subscription);
-        this.username = this.fg.controls['username'];
-       let usernameSubscription=this.username.valueChanges
+        this.email = this.fg.controls['email'];
+       let emailSubscription=this.email.valueChanges
             .debounceTime(500)
             .distinctUntilChanged()
-            .flatMap(v=>this.http.user.exist({username: v}))
+            .flatMap(v=>this.http.user.exist({email: v}))
             .subscribe((res: any) => {
-                if (res.data) this.username.setErrors({"exist": true, msg: this.fgConfig.username[2].exist});
+                if (res.data) this.email.setErrors({"exist": true, msg: this.fgConfig.email[2].exist});
             });
-        this.subscription.push(usernameSubscription);
+        this.subscription.push(emailSubscription);
 
         let password2 = this.fg.controls['password2'];
         let password2Subscription=password2.valueChanges
@@ -249,16 +249,16 @@ function skuValidator(control: FormControl): { [s: string]: boolean|string} {
     return null;
 }
 
-function usernameExist5() {
+function emailExist5() {
     return (control: FormControl): Observable<any> => {
 
         return new Observable((obs: any) => {
             console.log("res");
-            obs.next({"usernameExist": true});
+            obs.next({"emailExist": true});
             obs.complete();
         })
 
-        // return http.post("http://127.0.0.1:3000/web/user/exist", {username: control.value})
+        // return http.post("http://127.0.0.1:3000/web/user/exist", {email: control.value})
         //     .map(res=>{
         //         console.log("res",res);
         //         return {aaa:"sss"};
@@ -268,7 +268,7 @@ function usernameExist5() {
 }
 
 
-function usernameExist3(control: FormControl): Promise<any> {
+function emailExist3(control: FormControl): Promise<any> {
     return new Promise(resolve => {
         setTimeout(() => {
             return resolve({
@@ -278,11 +278,11 @@ function usernameExist3(control: FormControl): Promise<any> {
     })
 }
 
-function usernameExist2(control: AbstractControl): Observable<any> {
+function emailExist2(control: AbstractControl): Observable<any> {
     return new Observable((obs: any) => {
         setTimeout(()=> {
             console.log(control.value)
-            obs.next({"usernameExist11": true});
+            obs.next({"emailExist11": true});
             obs.complete();
         }, 100)
 
@@ -290,19 +290,19 @@ function usernameExist2(control: AbstractControl): Observable<any> {
 }
 
 // function ux(c: FormControl) {
-//     return usernameExist2(c).debounceTime(1000).distinctUntilChanged().first();
+//     return emailExist2(c).debounceTime(1000).distinctUntilChanged().first();
 // }
 
 
-interface IUsernameEmailValidator {
+interface IemailEmailValidator {
 }
 
-// function usernameExist(http:HTTP) {
+// function emailExist(http:HTTP) {
 //
 //
-//     return (control: FormControl): Observable<IUsernameEmailValidator> => {
+//     return (control: FormControl): Observable<IemailEmailValidator> => {
 //         // console.log(111)
-//         // http.post("http://127.0.0.1:3000/web/user/exist", {username: "222222222"}) .toPromise()
+//         // http.post("http://127.0.0.1:3000/web/user/exist", {email: "222222222"}) .toPromise()
 //         //     .then(response => {
 //         //         console.log(response)
 //         //     })
@@ -317,10 +317,10 @@ interface IUsernameEmailValidator {
 //                 .first()
 //                 .flatMap((value:any) => {
 //                     console.log(value)
-//                     return http.post("http://127.0.0.1:3000/web/user/exist", {username: value})})
+//                     return http.post("http://127.0.0.1:3000/web/user/exist", {email: value})})
 //                 .subscribe(
 //                     data => {
-//                         obs.next({"usernameExist": true});
+//                         obs.next({"emailExist": true});
 //                         obs.complete();
 //                         //form.formatError(control,"已经存在");
 //                     },
@@ -329,8 +329,8 @@ interface IUsernameEmailValidator {
 //                         console.log(error)
 //                         let message = error.json().message;
 //                         let reason:string;
-//                         if (message === 'Username taken') {
-//                             reason = 'usernameTaken';
+//                         if (message === 'email taken') {
+//                             reason = 'emailTaken';
 //                         }
 //                         if (message === 'Email taken') {
 //                             reason = 'emailTaken';
@@ -345,17 +345,17 @@ interface IUsernameEmailValidator {
 //         // .subscribe(
 //         //     data => {
 //         //        console.log(data)
-//         //         return Promise.resolve({usernameExist: true})
+//         //         return Promise.resolve({emailExist: true})
 //         //     },
 //         //     error => {
 //         //         console.log(error)
-//         //         return Promise.resolve({usernameExist: true})
+//         //         return Promise.resolve({emailExist: true})
 //         //     }).to
 //
 //         //.subscribe()
 //         //.toPromise()
 //         // .then((value: any)=> {
-//         //     return {usernameExist: true}
+//         //     return {emailExist: true}
 //         // });
 //
 //     }
@@ -368,8 +368,8 @@ interface IUsernameEmailValidator {
 //     //     error => {
 //     //         let message = error.json().message;
 //     //         let reason;
-//     //         if (message === 'Username taken') {
-//     //             reason = 'usernameTaken';
+//     //         if (message === 'email taken') {
+//     //             reason = 'emailTaken';
 //     //         }
 //     //         if (message === 'Email taken') {
 //     //             reason = 'emailTaken';
@@ -386,7 +386,7 @@ interface IUsernameEmailValidator {
 //     //         let q = new Promise((resolve, reject) => {
 //     //             setTimeout(() => {
 //     //
-//     //                 resolve({usernameExist: true,msg:"用户名已经存在"});
+//     //                 resolve({emailExist: true,msg:"Email已经存在"});
 //     //                 //resolve(null);
 //     //
 //     //             }, 1000)
@@ -394,10 +394,10 @@ interface IUsernameEmailValidator {
 //     //
 //     //         return q;
 //     //         //
-//     //         // return http.user.exist({username: control.value}).then((res: any)=> {
+//     //         // return http.user.exist({email: control.value}).then((res: any)=> {
 //     //         //      console.log(res)
 //     //         //     if (res.data)
-//     //         //         return Promise.resolve({usernameExist: true,msg:"用户名已经存在"})
+//     //         //         return Promise.resolve({emailExist: true,msg:"Email已经存在"})
 //     //         //     else
 //     //         //         return Promise.resolve(null);
 //     //         // })

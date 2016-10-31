@@ -19,7 +19,8 @@ class FNS {
             return (query?: any):Observable<any>=> {
                 //console.log(this.hp.host+this._module+"/"+fn,query)
                 query=query||{};
-                //query.sid=utility.ls.get("sid");
+                let u=utility.ls.get("user");
+                if(u)query._sid=u.sid;
                 query._bid=utility.Bid;
                 console.log("query",query)
 
@@ -70,6 +71,7 @@ export class HttpProvider {
     //public modules:string[] = ['login', 'user', 'demo'];
     public cache:any;
     public user:any;
+    public withdraw:any;
     public login:any;
     public reg:any;
     public demo:any;
@@ -85,7 +87,8 @@ export class HttpProvider {
         this.user=new FNS(this,"user").create();
         this.login=new FNS(this,"login").create();
         this.reg=new FNS(this,"reg").create();
-
+        this.withdraw=new FNS(this,"withdraw").create();
+        
         this.demo=new FNS(this,"demo").create();
 
 

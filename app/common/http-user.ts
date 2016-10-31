@@ -8,15 +8,15 @@ import {HttpProvider} from './http-provider';
 
 @Injectable()
 export class HttpUser extends HttpProvider{
-    private router:Router;
-    constructor(private _router:Router,private _http:Http) {
+    //private router:Router;
+    constructor(private router:Router,private _http:Http) {
         super();
-        this.router=_router;
+        //this.router=_router;
         this.http=_http;
-        this.create("admin");
+        this.create("user");
     }
     httpHandle(response:any){
-        if(response.err==401) this.router.navigate(['/user/test1']);
+        if(response.err==401) this.router.navigate(['/']);
     }
 }
 

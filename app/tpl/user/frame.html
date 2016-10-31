@@ -13,7 +13,7 @@
 
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                    <li class="dropdown" dropdown dropdown-append-to-body>
+               <li class="dropdown" dropdown dropdown-append-to-body>
                         <a id="btn-append-to-body"  class="dropdown-toggle" dropdownToggle>
                             <i class="fa fa-user"></i> 我的账户 <span class="caret"></span>
                         </a>
@@ -27,53 +27,45 @@
                         </ul>
                     </li>
 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="order"><i class="fa fa-star"></i> 订单管理 <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="order">
-                        <li><a href="/epay">电子支付查询</a></li>
-                        <li><a href="/card">卡类查询</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="user"><i class="fa fa-user"></i> 商户管理 <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="user">
-                        <li><a href="/user">商户列表</a></li>
-                        <li><a href="/auth">商户入驻审核</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="data"><i class="fa fa-pie-chart"></i> 运营数据 <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="data">
-                        <li><a href="/order">流水统计</a></li>
-                        <li><a href="/order">毛利情况</a></li>
-                        <li><a href="/order">业务成本</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="api"><i class="fa fa-plug"></i> 商户接口 <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="api">
-                        <li><a href="/doc">接口文档</a></li>
-                        <li><a href="/epaysort">电子支付</a></li>
-                        <li><a href="/cardsort">点卡支付</a></li>
-                        <li><a href="/banksort">银行种类</a></li>
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="order"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-star"></i> 订单管理 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="order">
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/epay">电子支付查询</a></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/card">卡类查询</a></li>
                     </ul>
                 </li>
 
+
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="api"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-plug"></i> 商户接口 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="api">
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/doc">接口文档</a></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/key">获取密钥</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" style="padding-right: 50px">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="contact"><i class="fa fa-qq"></i> 联系我们 <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="contact">
-                        <li> <a><i class="fa fa-qq"></i> 876555555</a></li>
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="contact"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-qq"></i> 联系我们 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="contact">
+                        <li role="menuitem"><a class="dropdown-item"><i class="fa fa-qq"></i> 876555555</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="manager"><i class="fa fa-user"></i> username <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="manager">
-                        <li><a href="/changepwd">修改密码</a></li>
-                        <li class="divider"></li>
-                        <li><a ng-click="signout()" href="/logout">退出登入</a></li>
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="login"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-user"></i> {{user.email}}  <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="login">
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/change_pwd">修改密码</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="signout()">退出登入</a></li>
                     </ul>
                 </li>
             </ul>

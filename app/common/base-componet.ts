@@ -7,10 +7,11 @@ export class BaseComponent implements OnDestroy,OnInit {
     ngOnInit(){
 
     }
-    ngOnDestroy(){
-        this.subscription.forEach((sub:any)=>{
+    ngOnDestroy() {
+        this.subscription.forEach((sub: any)=> {
             //console.log(sub);
-            if(sub) sub.unsubscribe();
+            if (sub) sub.unsubscribe();
         });
+    
     }
 }

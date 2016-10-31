@@ -1,15 +1,23 @@
 import {Routes} from "@angular/router";
 
 import {AccountInfoComponent} from './account-info.component';
-import {Test2Component} from './test2.component';
+import {RateComponent} from './rate.component';
 import {DefaultComponent}       from './default.component';
 import {FrameComponent}     from './frame.component';
+import {RequestWithdrawComponent}     from './request-withdraw.component';
+import {WithdrawLogComponent}     from './withdraw-log.component';
+import {BidResolve,CacheResolve}     from '../common';
+
 import {Auth} from './auth';
 
 export const UserRoutes: Routes = [{
     path: 'user',
     component: FrameComponent,
     canActivate:[Auth],
+    resolve: {
+        bid: BidResolve,
+        cache: CacheResolve
+    },
     children: [
         {
             path: '',
@@ -20,8 +28,16 @@ export const UserRoutes: Routes = [{
             component: AccountInfoComponent
         },
         {
-            path: 'test2',
-            component: Test2Component
+            path: 'rate',
+            component: RateComponent
+        },
+        {
+            path: 'request_withdraw',
+            component: RequestWithdrawComponent
+        },
+        {
+            path: 'withdraw_log',
+            component: WithdrawLogComponent
         }
     ]
 }
@@ -29,10 +45,12 @@ export const UserRoutes: Routes = [{
 export const Declarations:any[]=[
     DefaultComponent,
     AccountInfoComponent,
-    Test2Component,
+    RateComponent,
+    RequestWithdrawComponent,
+    WithdrawLogComponent,
     FrameComponent
 ];
 
-export const Providers:any[]=[Auth];
+export const Providers:any[]=[Auth,BidResolve,CacheResolve];
 
 

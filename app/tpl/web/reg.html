@@ -12,21 +12,21 @@
     </div>
     <form  [formGroup]="fg"  class="form-horizontal">
         <div class="form-group">
-            <label for="username" class="col-md-2 control-label">用户名：</label>
+            <label for="email" class="col-md-2 control-label">Email：</label>
             <div class="col-md-10">
                 <div class="w160">
                     <input type="text"
-                           id="username"
+                           id="email"
                            class="form-control"
-                           placeholder="用户名"
-                           [formControl]="fg.controls['username']">
+                           placeholder="Email"
+                           [formControl]="fg.controls['email']">
 
                 </div>
                 <div class="form-con">
 
-                    <div *ngIf="fg.controls['username'].hasError('msg')" class="error">{{fg.controls['username'].errors?.msg}}</div>
-                    <div *ngIf="fg.controls['username'].pristine" class="star">{{fgConfig.username[2].default}}</div>
-                    <div *ngIf="fg.controls['username'].dirty&&fg.controls['username'].valid" class="correct"></div>
+                    <div *ngIf="fg.controls['email'].hasError('msg')" class="error">{{fg.controls['email'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['email'].pristine" class="star">{{fgConfig.email[2].default}}</div>
+                    <div *ngIf="fg.controls['email'].dirty&&fg.controls['email'].valid" class="correct"></div>
 
                 </div>
             </div>

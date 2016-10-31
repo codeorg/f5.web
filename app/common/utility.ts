@@ -117,6 +117,7 @@ export class utility {
         value = utility.toNumber(value);
         return value.toFixed(2);
     }
+    
 
     //扩展对象，不创建新对象
     static extend(...objs: Object[]) {

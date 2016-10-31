@@ -1,0 +1,33 @@
+/*所有去除虚线框*/
+*{
+    outline:none;
+    -moz-outline:none;
+}
+
+/*模式框架背景没有*/
+.modal-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;background-color:#000}
+.ABC, .BJBANK, .BJRCB, .BOC, .CCB, .CDCB, .CEB, .CIB, .ECITIC, .CMB, .CMBC, .COMM, .CSRCB, .FDB, .GDB, .HZCB, .ICBC, .NBBANK, .NJCB, .PSBC, .SHBANK, .SHRCB, .SPABANK, .SPDB, .WZCB, .ZJNX {
+    text-indent: -9999px;
+    width: 126px;
+    height: 36px;
+    background-image: url("/img/bank.png");
+}
+.ICBC {background-position: 0px -0px; }
+.CCB {background-position: 0px -36px; }
+.ABC {background-position: 0px -72px; }
+.PSBC {background-position: 0px -108px; }
+
+.COMM {background-position: 0px -144px; }
+.CMB {background-position: 0px -180px; }
+
+.BOC {background-position: 0px -216px; }
+.CEB {background-position: 0px -252px; }
+
+.ECITIC {background-position: 0px -288px; }
+.SPDB {background-position: 0px -324px; }
+
+.CMBC {background-position: 0px -360px; }
+.CIB {background-position: 0px -396px; }
+.SPABANK {background-position: 0px -432px; }
+.GDB {background-position: 0px -468px; }
+.SHBANK {background-position: 0px -504px; }

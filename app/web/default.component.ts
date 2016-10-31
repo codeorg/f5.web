@@ -28,8 +28,8 @@ export class DefaultComponent extends BaseComponent{
         super();
     }
     onClick(){
-        if(this.fg.controls['username'].hasError('required')){
-            this.fg.controls['username'].setErrors({msg:this.fgConfig.username[2].required});
+        if(this.fg.controls['email'].hasError('required')){
+            this.fg.controls['email'].setErrors({msg:this.fgConfig.email[2].required});
             return;
         }
         if(this.fg.controls['password'].hasError('required')){
@@ -43,7 +43,7 @@ export class DefaultComponent extends BaseComponent{
                 this.router.navigateByUrl('/user');
             }else{
                 //this.msg=res.msg;
-                this.fg.controls['username'].setErrors({match:true,msg:res.msg});
+                this.fg.controls['email'].setErrors({match:true,msg:res.msg});
             }
         })
 
@@ -54,11 +54,15 @@ export class DefaultComponent extends BaseComponent{
     ngOnInit() {
         FH.animation();
         this.fgConfig = {
-            'username': ['',[Validators.required],{required: "用户名不能为空"}],
+            'email': ['',[Validators.required],{required: "Email不能为空"}],
             'password': ['',[Validators.required],{required: "密码不能为空"}]
         };
         this.fg = form.getFormGroup(this.fb, this.fgConfig,this.subscription);
 
+    }
+    ngOnDestroy(){
+        super.ngOnDestroy();
+        FH.destroy()
     }
 }
 
