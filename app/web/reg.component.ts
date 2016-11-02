@@ -16,9 +16,9 @@ import {ActivatedRoute, Router, Params} from '@angular/router';
 import {utility,BaseComponent,form,Http,HttpUser} from  '../common';
 import {Observable} from 'rxjs/Rx';
 @Component({
-    styleUrls: ['../css/web/common.css', '../css/web/login.css'],
+    styleUrls: [ '../css/web/login.css'],
 
-    templateUrl: '../tpl/web/reg.html',
+    templateUrl: './reg.component.html',
     providers: [Http, HttpUser],
 })
 export class RegComponent extends BaseComponent {

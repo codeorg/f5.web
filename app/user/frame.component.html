@@ -1,0 +1,94 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="nav-body">
+        <div class="navbar-header">
+            <a routerLink="/"><img  src="/img/logo-user.png"></a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="btn-append-to-body"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-user"></i> 我的账户 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user">账户余额</a></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/account_info">账户信息</a></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/rate">清算比例</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/request_withdraw">申请提现</a></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/withdraw_log">提现记录</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="order"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-star"></i> 订单管理 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="order">
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/epay">电子支付查询</a></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/card">卡类查询</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="api"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-plug"></i> 商户接口 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="api">
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/doc">接口文档</a></li>
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/user/key">获取密钥</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 50px">
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="contact"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-qq"></i> 联系我们 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="contact">
+                        <li role="menuitem"><a class="dropdown-item"><i class="fa fa-qq"></i> 876555555</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" dropdown dropdown-append-to-body>
+                    <a id="login"  class="dropdown-toggle" dropdownToggle>
+                        <i class="fa fa-user"></i> {{user.email}}  <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="login">
+                        <li role="menuitem"><a class="dropdown-item" routerLink="/change_pwd">修改密码</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="signout()">退出登入</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 100px">
+
+    <div class="col-lg-2 col-md-2 hidden-xs">
+        <div class="list-group">
+            <a *ngFor="let m of menus" routerLink="{{m.url}}" [ngClass]="{active:isSelected(m.url)}" class="list-group-item" >
+                {{m.text}}
+            </a>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <ul class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+            <li class="active">{{text}}</li>
+        </ul>
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

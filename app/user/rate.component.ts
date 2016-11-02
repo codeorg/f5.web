@@ -2,26 +2,11 @@ import { Component } from '@angular/core';
 import {utility, BaseComponent, HttpUser} from '../common';
 @Component({
   styles:[`
-    #mian_table td{vertical-align:middle;}
+    #mian_table td{vertical-align:middle;}   
 `],
   template: `
 	<div >
-				<style >
-    .table > thead > tr > td.active,
-    .table > tbody > tr > td.active,
-    .table > tfoot > tr > td.active,
-    .table > thead > tr > th.active,
-    .table > tbody > tr > th.active,
-    .table > tfoot > tr > th.active,
-    .table > thead > tr.active > td,
-    .table > tbody > tr.active > td,
-    .table > tfoot > tr.active > td,
-    .table > thead > tr.active > th,
-    .table > tbody > tr.active > th,
-    .table > tfoot > tr.active > th {
-        background-color: #F2DEDE;
-    }
-				</style>
+	
 				<fieldset >
 					<table id="mian_table" class="table table-bordered table-hover table-condensed font_14" style="padding-bottom: 0px;margin-bottom: 0px;">
 					<tbody>

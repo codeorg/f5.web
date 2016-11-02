@@ -1,7 +1,8 @@
 import { NgModule }       from '@angular/core';
 import {CodeorgModule} from '../codeorg.module';
 import { RouterModule } from '@angular/router';
-import { DropdownModule,AlertModule,PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
+
+import { DropdownModule,AlertModule,PaginationModule,DatepickerModule  } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { UserRoutes,Declarations,Providers } from './user.routes';
 
@@ -11,6 +12,7 @@ import { UserRoutes,Declarations,Providers } from './user.routes';
     DropdownModule,
     AlertModule,
     PaginationModule,
+    DatepickerModule,
     RouterModule.forChild(UserRoutes)
   ],
   declarations: Declarations,

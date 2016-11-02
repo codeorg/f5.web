@@ -9,8 +9,14 @@ let Fingerprint2=require('../lib/fingerprint2');
 let DateFormat=require('../lib/dateFormat');
 
 export class utility {
-    public static _dateFormat = new DateFormat();
+    public static _dateFormat = DateFormat;
     public static Bid: string = "";
+    
+    // static getDateFormat(){
+    //     console.log(utility._dateFormat)
+    //     if(!utility._dateFormat) utility._dateFormat= DateFormat;
+    //     return utility._dateFormat;
+    // }
 
     static toInt(value?: any): number {
         return _.toInteger(value);
@@ -44,6 +50,12 @@ export class utility {
     //是否Json对象
     static isPlainObject(value?: any) {
         _.isPlainObject(value)
+    }
+    //是否日期
+    static isDate(value?: any) {
+        if(!value) return false;
+        let dt:any=new Date(value);
+        return dt!=='Invalid Date';
     }
 
     static drop(array: any[], num?: number) {
@@ -178,7 +190,7 @@ export class utility {
         testD = new Date(dateTime);
         if (testD == "Invalid Date")dateTime = new Date();
         if (!format)format = 'yyyy-mm-dd'
-
+        //console.log(utility._dateFormat);
         return utility._dateFormat(dateTime, format);
     }
 

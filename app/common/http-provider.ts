@@ -74,6 +74,8 @@ export class HttpProvider {
     public withdraw:any;
     public login:any;
     public reg:any;
+    public card:any;
+    public eapay:any;
     public demo:any;
 
     create(  _path:string) {
@@ -88,7 +90,8 @@ export class HttpProvider {
         this.login=new FNS(this,"login").create();
         this.reg=new FNS(this,"reg").create();
         this.withdraw=new FNS(this,"withdraw").create();
-        
+        this.card=new FNS(this,"card").create();
+        this.eapay=new FNS(this,"eapay").create();
         this.demo=new FNS(this,"demo").create();
 
 

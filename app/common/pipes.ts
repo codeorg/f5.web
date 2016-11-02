@@ -1,6 +1,21 @@
 import { Pipe,PipeTransform } from '@angular/core';
 import { utility } from './utility';
 
+
+@Pipe({name: 'datetime'})
+export class DateTimePipe implements PipeTransform {
+    transform(value: any, param?: string): string {
+        if(value==0) return '';
+        return  utility.formatDate(value,param);
+    }
+}
+@Pipe({name: 'money'})
+export class MoneyPipe implements PipeTransform {
+    transform(value: any): string {
+        return  utility.formatMoney(value);
+    }
+}
+
 @Pipe({name: 'bs'})
 export class BankSortPipe implements PipeTransform {
     transform(value: string): string {
@@ -10,16 +25,26 @@ export class BankSortPipe implements PipeTransform {
         return obj.name;
     }
 }
+@Pipe({name: 'cs'})
+export class CardSortPipe implements PipeTransform {
+    transform(value: string): string {
+        let arr=utility.ls.get('cardsort');
+        let obj:any=utility.find(arr,{id:value});
+        if(!obj) return '';
+        return obj.name;
+    }
+}
+
 
 @Pipe({name: 'int'})
 export class IntPipe implements PipeTransform {
-    transform(value: any): string {
+    transform(value?: any): string {
         return utility.toInt(value).toString();
     }
 }
 @Pipe({name: 'cent'})
 export class CentPipe implements PipeTransform {
-    transform(value: any): string {
+    transform(value?: any): string {
         let str=utility.formatMoney(value);
         let index:number=str.indexOf('.');
         if(index==-1) return '00';
@@ -28,7 +53,7 @@ export class CentPipe implements PipeTransform {
 }
 @Pipe({name: 'right'})
 export class RightPipe implements PipeTransform {
-    transform(value: string, param: number): string {
+    transform(value: string, param?: number): string {
         if(!value) return '';
         let len=param||4;
         if(value.length<=len) return value;
@@ -45,7 +70,7 @@ export class RateStatusPipe implements PipeTransform {
 }
 @Pipe({name: 'withdrawstatus'})
 export class WithdrawStatusPipe implements PipeTransform {
-    transform(value: number): string {
+    transform(value: string): string {
         //request,postbank,success,fail
         switch (value){
             case 'postbank':

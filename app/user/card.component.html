@@ -1,0 +1,221 @@
+
+
+
+<table id="search_table" class="table table-striped font_12">
+    <thead>
+    </thead>
+    <tbody>
+    <tr>
+
+        <td>
+            平台订单号：
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="query.cid" class="form-control wid200" placeholder="平台订单号">
+        </td>
+        <td>
+            商户订单号：
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="query.order_no"class="form-control wid200" placeholder="商户订单号">
+        </td>
+        <td colspan="2">
+    </tr>
+    <tr>
+        <td class="center">
+            选择卡种：
+        </td>
+        <td class="center">
+            <select class="form-control" [(ngModel)]="query.card_type">
+                <option value="">所有卡类</option>
+                <option *ngFor="let cs of css" value="{{cs.id}}">{{cs.name}}</option>
+            </select>
+        </td>
+        <td class="center">
+            支付状态：
+        </td>
+        <td class="center">
+            <select class="form-control" [(ngModel)]="query.trade_status">
+                <option value="1">成功</option>
+                <option value="0">失败</option>
+            </select>
+        </td>
+        <td class="center">
+            通知状态：
+        </td>
+        <td class="center">
+            <select class="form-control" [(ngModel)]="query.notify_status">
+                <option value="1">成功</option>
+                <option value="0">失败</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="center">
+            选择时间：
+        </td>
+        <td class="center">
+            <select class="form-control" [(ngModel)]="query.time">
+                <option value="0">按下单时间</option>
+                <option value="1">按支付时间</option>
+            </select>
+        </td>
+        <td>
+            开始时间：
+        </td>
+        <td (clickOutsideForDate)="dtFromOpen=false;">
+            <p class="input-group" tooltip-placement="top">
+            <input type="text" [(ngModel)]="query.from_time" value="{{dtFrom|datetime}}" (keyup)="OnChangeTime(query.from_time)" class="form-control" >
+
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" (click)="dtFromOpen=!dtFromOpen" ><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+
+            </p>
+            <div  *ngIf="dtFromOpen" style="position: absolute;z-index: 99; min-height:290px; ">
+                <datepicker [(ngModel)]="dtFrom" (selectionDone)="onSelectedDate($event,'from')" [minDate]="minDate" [showWeeks]="true"></datepicker>
+
+            </div>
+
+        </td>
+        <td>
+            结束时间：
+        </td>
+        <td (clickOutsideForDate)="dtToOpen=false;">
+            <p class="input-group" tooltip-placement="top">
+                <input type="text" [(ngModel)]="query.to_time" value="{{dtTo|datetime}}" (keyup)="OnChangeTime(query.to_time)" class="form-control" >
+
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" (click)="dtToOpen=!dtToOpen" ><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+            </p>
+            <div  *ngIf="dtToOpen" style="position: absolute;z-index: 99; min-height:290px; ">
+                <datepicker  [(ngModel)]="dtTo" (selectionDone)="onSelectedDate($event,'to')" [minDate]="minDate" [showWeeks]="true"></datepicker>
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td colspan="7">
+            <button (click)="search()" type="button" class="btn btn-primary">筛选</button>
+            <button type="button" class="btn btn-primary">导出</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<ul class="breadcrumb alert alert-info">
+    <li><i class="glyphicon glyphicon-book mar_r5"></i>
+        <span>订单金额合计：</span>
+        <strong style="color:#FC491E;font-size: 19px;font-weight: 400" class="ng-binding">￥{{total_fee|money}}
+            <span style="color:#FC491E;font-size: 12px" class="ng-binding">元</span>
+        </strong>
+    </li>
+    <li><i class="glyphicon glyphicon-book mar_r5"></i>
+        <span>手续费合计：</span>
+        <strong style="color:#FC491E;font-size: 19px;font-weight: 400" class="ng-binding">￥{{service_fee|money}}
+            <span style="color:#FC491E;font-size: 12px" class="ng-binding">元</span>
+        </strong>
+    </li>
+    <li><i class="glyphicon glyphicon-book mar_r5"></i>
+        <span>实收金额合计：</span>
+        <strong style="color:#FC491E;font-size: 19px;font-weight: 400" class="ng-binding">￥{{fact_fee|money}}
+            <span style="color:#FC491E;font-size: 12px" class="ng-binding">元</span>
+        </strong>
+    </li>
+</ul>
+
+<table id="mian_table" class="table table-striped font_12">
+    <thead>
+    <tr>
+        <th>
+            商户编号
+        </th>
+        <th>
+            平台/商户订单号
+        </th>
+        <th>
+            卡号/密码
+        </th>
+        <th>
+            下单时间
+        </th>
+        <th>
+            支付时间
+        </th>
+        <th>
+            订单金额
+        </th>
+        <th>
+            手续费
+        </th>
+        <th>
+            实收金额
+        </th>
+        <th>
+            支付方式
+        </th>
+        <th>
+            订单状态
+        </th>
+        <th>
+            订单通知
+        </th>
+
+        <th>
+            补发通知
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of rows">
+        <td class="center">
+            {{row.partner}}
+        </td>
+        <td class="center">
+            {{row.cid}}<br>{{row.order_no}}
+        </td>
+        <td class="center">
+            {{row.card_no}}<br>{{row.card_pwd}}
+        </td>
+        <td class="center">
+            {{row.time|date:'yyyy-MM-dd hh:mm:ss'}}
+        </td>
+        <td class="center">
+            {{row.trade_time|date:'yyyy-MM-dd hh:mm:ss'}}
+        </td>
+        <td class="center">
+            <span class="label-success label label-default">{{row.total_fee|money}}</span>
+        </td>
+        <td class="center">
+            <span class="label-success label label-default">{{row.service_fee|money}}</span>
+        </td>
+        <td class="center">
+            <span class="label-success label label-default">{{row.fact_fee|money}}</span>
+        </td>
+        <td class="center">
+            {{row.card_type|cs}}
+        </td>
+        <td class="center">
+            {{row.trade_status }}
+        </td>
+        <td class="center">
+            {{row.notify_status }}
+        </td>
+        <td class="center">
+            <a class="btn btn-primary btn-mima"><i class="glyphicon glyphicon-zoom-in icon-white"></i> 成功通知</a>
+        </td>
+    </tr>
+
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@ require('../lib/jquery.plugin.min');
 var FH = require('../lib/fashionfoucs');
 @Component({
     styleUrls: ['../css/web/fashionfoucs.css', '../css/web/index-login.css'],
-    templateUrl:'../tpl/web/default.html',
+    templateUrl:'./default.component.html',
     providers: [Http, HttpUser],
 })
 export class DefaultComponent extends BaseComponent{

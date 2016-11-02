@@ -1,0 +1,257 @@
+<div class="login-top">
+    <div class="wrap">
+        <div class="home-back"><a routerLink="/">返回首页</a></div>
+    </div>
+</div>
+<div class="login-logo"><img src="/img/logo.png" /></div>
+<div class="login-content">
+
+    <div class="tit">
+        <h1>注册账号</h1>
+        <div>认真负责真实地填写您的注册资料,会为您带来更多的商业机会</div>
+    </div>
+    <form  [formGroup]="fg"  class="form-horizontal">
+        <div class="form-group">
+            <label for="email" class="col-md-2 control-label">Email：</label>
+            <div class="col-md-10">
+                <div class="w160">
+                    <input type="text"
+                           id="email"
+                           class="form-control"
+                           placeholder="Email"
+                           [formControl]="fg.controls['email']">
+
+                </div>
+                <div class="form-con">
+
+                    <div *ngIf="fg.controls['email'].hasError('msg')" class="error">{{fg.controls['email'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['email'].pristine" class="star">{{fgConfig.email[2].default}}</div>
+                    <div *ngIf="fg.controls['email'].dirty&&fg.controls['email'].valid" class="correct"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-md-2 control-label">登录密码：</label>
+            <div class="col-md-10">
+                <div class="w160">
+                    <input type="password"
+                           id="password"
+                           class="form-control"
+                           placeholder="密码"
+                           [formControl]="fg.controls['password']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['password'].hasError('msg')" class="error">{{fg.controls['password'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['password'].pristine" class="star">{{fgConfig.password[2].default}}</div>
+                    <div *ngIf="fg.controls['password'].dirty&&fg.controls['password'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password2" class="col-md-2 control-label">确认密码：</label>
+
+            <div class="col-md-10">
+                <div class="w160">
+                    <input type="password"
+                           id="password2"
+                           class="form-control"
+                           placeholder="密码"
+                           [formControl]="fg.controls['password2']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['password2'].hasError('msg')" class="error">{{fg.controls['password2'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['password2'].pristine" class="star">{{fgConfig.password2[2].default}}</div>
+                    <div *ngIf="fg.controls['password2'].dirty&&fg.controls['password2'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone" class="col-md-2 control-label">手机号码：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="phone"
+                           class="form-control"
+                           placeholder="手机号码"
+                           [formControl]="fg.controls['phone']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['phone'].hasError('msg')" class="error">{{fg.controls['phone'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['phone'].pristine" class="star">{{fgConfig.phone[2].default}}</div>
+                    <div *ngIf="fg.controls['phone'].dirty&&fg.controls['phone'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qq" class="col-md-2 control-label">QQ：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="qq"
+                           class="form-control"
+                           placeholder="QQ"
+                           [formControl]="fg.controls['qq']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['qq'].hasError('msg')" class="error">{{fg.controls['qq'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['qq'].pristine" class="star">{{fgConfig.qq[2].default}}</div>
+                    <div *ngIf="fg.controls['qq'].dirty&&fg.controls['qq'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="url" class="col-md-2 control-label">网站：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="url"
+                           class="form-control"
+                           placeholder="网站"
+                           [formControl]="fg.controls['url']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['url'].hasError('msg')" class="error">{{fg.controls['url'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['url'].pristine" class="star">{{fgConfig.url[2].default}}</div>
+                    <div *ngIf="fg.controls['url'].dirty&&fg.controls['url'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line"></div>
+        <div class="form-group">
+            <label for="bank_type" class="col-md-2 control-label">银行类型：</label>
+            <div class="col-md-10">
+                <div class="w160" id="bank_type" (click)="btShow=!btShow" >
+                    <input type="hidden"
+                           class="form-control"
+                           placeholder="银行类型"
+                           style="cursor: pointer"
+                           [formControl]="fg.controls['bank_type']" readonly>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="银行类型"
+                           style="cursor: pointer"
+                           value="{{fg.controls['bank_type'].value|bs}}" readonly>
+
+                    <!--<input type="text" class="form-control"  id="prv" name="prv" tabIndex="9" type="text" value="&#45;&#45;&#45;&#45;选择银行&#45;&#45;&#45;&#45;" readonly />-->
+                    <div class="btn-an"></div>
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['bank_type'].hasError('msg')" class="error">{{fg.controls['bank_type'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['bank_type'].pristine" class="star">{{fgConfig.bank_type[2].default}}</div>
+                    <div *ngIf="fg.controls['bank_type'].dirty&&fg.controls['bank_type'].valid" class="correct"></div>
+                </div>
+                <!--#省份弹框-->
+                <div *ngIf="btShow" class="tk-box province">
+                    <div class="list" id="options">
+                        <a (click)="fg.controls['bank_type'].setValue(bs.id);btShow=false;" *ngFor="let bs of banksort" style="cursor: pointer"> {{bs.id | bs}}</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-md-2 control-label">姓名：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="name"
+                           class="form-control"
+                           placeholder="姓名"
+                           [formControl]="fg.controls['name']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['name'].hasError('msg')" class="error">{{fg.controls['name'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['name'].pristine" class="star">{{fgConfig.name[2].default}}</div>
+                    <div *ngIf="fg.controls['name'].dirty&&fg.controls['name'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="account" class="col-md-2 control-label">银行卡号：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="account"
+                           class="form-control"
+                           placeholder="银行卡号"
+                           [formControl]="fg.controls['account']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['account'].hasError('msg')" class="error">{{fg.controls['account'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['account'].pristine" class="star">{{fgConfig.name[2].default}}</div>
+                    <div *ngIf="fg.controls['account'].dirty&&fg.controls['account'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="idcard" class="col-md-2 control-label">身份证：</label>
+            <div class="col-md-10">
+                <div class="w260">
+                    <input type="text"
+                           id="idcard"
+                           class="form-control"
+                           placeholder="身份证"
+                           [formControl]="fg.controls['idcard']">
+                </div>
+                <div class="form-con">
+                    <div *ngIf="fg.controls['idcard'].hasError('msg')" class="error">{{fg.controls['idcard'].errors?.msg}}</div>
+                    <div *ngIf="fg.controls['idcard'].pristine" class="star">{{fgConfig.idcard[2].default}}</div>
+                    <div *ngIf="fg.controls['idcard'].dirty&&fg.controls['idcard'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+
+
+
+
+        <div class="form-group">
+            <label for="vcode" class="col-md-2 control-label">验证码：</label>
+            <div class="col-md-10">
+                <div class="w160">
+                    <input type="text"
+                           id="vcode"
+                           class="form-control"
+                           placeholder="验证码"
+                           [formControl]="fg.controls['vcode']">
+                </div>
+                <div class="form-con">
+
+                    <img style=" margin-top: 0px;width:90px;height:38px; cursor: pointer"  (click)="getCap()"  title="点击换一张" alt="点击换一张" [src]="img">
+
+                    <div style="margin-left: 97px;" *ngIf="fg.controls['vcode'].dirty&&fg.controls['vcode'].hasError('match')"  class="error"></div>
+                    <div style="margin-left: 97px;" *ngIf="fg.controls['vcode'].dirty&&fg.controls['vcode'].valid" class="correct"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="margin-left:200px;">
+                <div style="float:left; line-height:30px;"><input [formControl]="fg.controls['check_service']" type="checkbox" name="chkxy"/>&nbsp;《我已仔细阅读并接受<a href="agreement.html" target="_blank" style="text-decoration:underline;cursor:pointer;color:#ff5000;">付网服务条款</a>》</div>
+                <div class="form-con">
+                    <div *ngIf="!fg.controls['check_service'].value" class="error" style="margin-top: 6px;" ></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-offset-2 col-md-10">
+                <div class="btn-submit">
+                    <button class="btn btn-success card_block" (click)="onSubmit()" [disabled]="fg.invalid"><i class="fa fa-check fa-fw"></i>立即注册</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<div class="foot">
+    <div class="wrap">
+        <div class="">大彻网络科技（上海）有限公司 沪ICP备14000903号</div>
+        <div class=""><img src="/img/360.png" /><img src="/img/safe.png" /></div>
+    </div>
+</div>

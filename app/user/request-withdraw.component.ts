@@ -5,8 +5,7 @@ import {FormBuilder,FormGroup,FormControl,Validators,AbstractControl} from '@ang
 
 
 @Component({
-   
-    //styleUrls:['../css/user/main.css'],
+    styleUrls:['../css/user/bank.css'],
     template: `
 	<div >
 				<div class="panel panel-default ">
@@ -58,7 +57,7 @@ import {FormBuilder,FormGroup,FormControl,Validators,AbstractControl} from '@ang
   `
 })
 export class RequestWithdrawComponent extends BaseComponent{
-    user: any[] = [];
+    user: any = {};
     fg: FormGroup;
     fgConfig: any;
     

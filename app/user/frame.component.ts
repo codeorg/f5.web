@@ -12,13 +12,13 @@ import {utility, BaseComponent, Http, HttpUser} from  '../common';
         }
         `],
    
-    templateUrl: '../tpl/user/frame.html',
+    templateUrl: './frame.component.html',
     providers: [Http, HttpUser]
 })
 export class FrameComponent extends BaseComponent {
     menus: any[];
     text: string;
-    user: Object = {};
+    user: any = {};
     
     constructor(private router: Router, private title: Title) {
         super();
@@ -42,7 +42,11 @@ export class FrameComponent extends BaseComponent {
                 {url: '/user/rate', text: '清算比例'},
                 {url: '/user/request_withdraw', text: '申请提现'},
                 {url: '/user/withdraw_log', text: '提现记录'}
-            ], [
+            ],  [
+                {url: '/user/epay', text: '电子支付查询'},
+                {url: '/user/card', text: '卡类查询'}
+            ],
+            [
                 {url: '/doc', text: '接口文档'},
             ]
         ];

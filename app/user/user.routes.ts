@@ -6,6 +6,9 @@ import {DefaultComponent}       from './default.component';
 import {FrameComponent}     from './frame.component';
 import {RequestWithdrawComponent}     from './request-withdraw.component';
 import {WithdrawLogComponent}     from './withdraw-log.component';
+import {CardComponent}     from './card.component';
+import {EpayComponent}     from './epay.component';
+
 import {BidResolve,CacheResolve}     from '../common';
 
 import {Auth} from './auth';
@@ -38,7 +41,16 @@ export const UserRoutes: Routes = [{
         {
             path: 'withdraw_log',
             component: WithdrawLogComponent
+        },
+        {
+            path: 'card',
+            component: CardComponent
+        },
+        {
+            path: 'epay',
+            component: EpayComponent
         }
+        
     ]
 }
 ];
@@ -48,6 +60,8 @@ export const Declarations:any[]=[
     RateComponent,
     RequestWithdrawComponent,
     WithdrawLogComponent,
+    CardComponent,
+    EpayComponent,
     FrameComponent
 ];
 

@@ -38,13 +38,13 @@ import {utility, BaseComponent,form, HttpUser} from '../common';
                 </td>
             </tr>
             <tr *ngFor="let r of rows">
-                <td>{{r.req_time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td>{{r.pay_time>0?(r.pay_time|date:'yyyy-MM-dd HH:mm:ss'):''}}</td>
+                <td>{{r.req_time|datetime}}</td>
+                <td>{{r.pay_time|datetime}}</td>
                 <td>{{r.name}}</td>
                 <td>{{r.bank_type|bs}}</td>
-                <td>{{r.account}}</td>
-                <td>{{r.total_fee|number:'1.2'}}</td>
-                <td>{{r.balance|number:'1.2'}}</td>
+                <td>{{r.account|right:5}}</td>
+                <td>{{r.total_fee|money}}</td>
+                <td>{{r.balance|money}}</td>
                 <td>{{r.status|withdrawstatus}}</td>
             </tr>
             </tbody>

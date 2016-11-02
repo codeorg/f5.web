@@ -3,7 +3,7 @@ import {utility, BaseComponent, HttpUser} from '../common';
 
 
 @Component({
-    //styleUrls: ['../css/user/main.css'],
+    styleUrls: ['../css/user/bank.css'],
     template: `
 	<div>
 				<form name="form" class="form-horizontal col-sm-12 ng-scope ng-pristine ng-valid">
