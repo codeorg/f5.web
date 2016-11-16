@@ -3,6 +3,5 @@
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{lodsh, rxjs}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
-    <includedPredefinedLibrary name="f5.web/node_modules" />
   </component>
 </project>

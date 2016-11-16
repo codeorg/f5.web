@@ -2,13 +2,8 @@
   <library name="lodsh" type="javaScript">
     <properties>
       <option name="frameworkName" value="node_modules" />
-      <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/node_modules/@types/lodash/index.d.ts" />
-      </sourceFilesUrls>
     </properties>
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/node_modules/@types/lodash/index.d.ts" />
-    </CLASSES>
+    <CLASSES />
     <SOURCES />
   </library>
 </component>
