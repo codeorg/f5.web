@@ -44,7 +44,7 @@ export class CardComponent extends BaseComponent  {
     dtToOpen=false;
     minDate:Date=new Date(utility.setDay(new Date(),-180));
     
-    OnChangeTime(time){
+    OnChangeTime(time:any){
         let pat=/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/;
         let m=pat.exec(time);
         if(!m||m.length<4)return;
@@ -54,7 +54,7 @@ export class CardComponent extends BaseComponent  {
         let dt=new Date(time);
         this.dtFrom=dt;
     }
-    onSelectedDate(event,type){
+    onSelectedDate(event:any,type:any){
         if(type=='from'){
             this.dtFromOpen=false;
             this.query.from_time=utility.formatDate(event,'yyyy-mm-dd');

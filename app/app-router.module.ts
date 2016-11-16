@@ -14,7 +14,7 @@ useH = {useHash: true};
 @NgModule({
     imports: [
         RouterModule.forRoot([
-            {path: "sub", loadChildren: "es6-promise?,[name]!./sub/sub.module#SubModule" },
+            //{path: "sub", loadChildren: "es6-promise?,[name]!./sub/sub.module#SubModule" },
             {path: '**', component: ErrorComponent}
     ],{useHash: true})
     ],
