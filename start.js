@@ -4,9 +4,4 @@ require('babel-register')({
 require("./app.js");
 
 
-//cd D:\wwwroot\ffff5\f5.admin
-//d:
-//node  start.js
-//顶顶顶
-
 
