@@ -83,7 +83,7 @@ export class RequestWithdrawComponent extends BaseComponent{
     }
     ngOnInit() {
         let u: any = utility.ls.get('user');
-        this.httpUser.user.findOne({email: u.email}).subscribe((res: any)=> {
+        this.httpUser.user.findOne().subscribe((res: any)=> {
             if (res.err) return;
             this.user = res.data;
         });

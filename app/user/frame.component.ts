@@ -47,7 +47,9 @@ export class FrameComponent extends BaseComponent {
                 {url: '/user/card', text: '卡类查询'}
             ],
             [
-                {url: '/doc', text: '接口文档'},
+                {url: '/user/doc', text: '接口文档'},
+                {url: '/user/key', text: '获取密钥'},
+                {url: '/user/qrtest', text: '扫码测试'},
             ]
         ];
         let sub = this.router.events.subscribe((v: any) => {

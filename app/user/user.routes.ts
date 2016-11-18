@@ -8,6 +8,8 @@ import {RequestWithdrawComponent}     from './request-withdraw.component';
 import {WithdrawLogComponent}     from './withdraw-log.component';
 import {CardComponent}     from './card.component';
 import {EpayComponent}     from './epay.component';
+import {KeyComponent}     from './key.component';
+import {QrtestComponent}     from './qrtest.component';
 
 import {BidResolve,CacheResolve}     from '../common';
 
@@ -49,7 +51,16 @@ export const UserRoutes: Routes = [{
         {
             path: 'epay',
             component: EpayComponent
+        },
+        {
+            path: 'key',
+            component: KeyComponent
+        },
+        {
+            path: 'qrtest',
+            component: QrtestComponent
         }
+
         
     ]
 }
@@ -62,6 +73,8 @@ export const Declarations:any[]=[
     WithdrawLogComponent,
     CardComponent,
     EpayComponent,
+    KeyComponent,
+    QrtestComponent,
     FrameComponent
 ];
 
