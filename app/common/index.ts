@@ -6,5 +6,6 @@ export * from './form';
 export * from './base-componet';
 export * from './http';
 export * from './http-user';
+export * from './http-api';
 export * from './bid-resolve.service';
 export * from './cache-resolve.service';

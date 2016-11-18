@@ -8,9 +8,10 @@ import { AppRouterModule} from './app-router.module';
 
 
 import { AppComponent } from './app.component';
- import { WebModule } from './web/web.module';
- import { UserModule } from './user/user.module';
- import { User2Module } from './user2/module';
+import { WebModule } from './web/web.module';
+import { UserModule } from './user/user.module';
+import { User2Module } from './user2/module';
+import {Http,HttpUser,HttpApi} from './common'
 import 'rxjs/Rx';
 
 @NgModule({
@@ -27,6 +28,6 @@ import 'rxjs/Rx';
   ],
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  providers: []
+  providers: [Http,HttpUser,HttpApi]
 })
 export class AppModule {}

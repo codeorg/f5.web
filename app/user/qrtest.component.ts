@@ -7,7 +7,7 @@ import {
     AbstractControl
 } from '@angular/forms';
 
-import {utility, BaseComponent, HttpUser,form} from '../common';
+import {utility, BaseComponent, HttpUser,HttpApi,form} from '../common';
 
 
 @Component({
@@ -44,8 +44,9 @@ import {utility, BaseComponent, HttpUser,form} from '../common';
 								 
 								 
 							</td>
-						    <td class="col-sm-6" rowspan="6">						     
-						        <textarea class="form-control" placeholder="返回结果" style="height: 300px">{{rez}}</textarea>
+						    <td class="col-sm-6" rowspan="6">		
+						        <img *ngIf="img" f="" style="position:absolute;right: 0;margin-top: 5px;margin-right: 25px;" [src]="img">
+						        <textarea class="form-control" placeholder="返回结果" style="height: 300px">{{rez|json}}</textarea>
 							</td>
 						</tr>
 						<tr>
@@ -91,7 +92,7 @@ import {utility, BaseComponent, HttpUser,form} from '../common';
 								签名,hmac(str,key)，这里自动计算
 							</td>
 							<td>
-							    <input class="form-control" readonly="" [formControl]="fg.controls['sign']" type="text">
+							    <input class="form-control" readonly="" value="{{sign}}" type="text">
 							</td>
 						</tr>
 						
@@ -118,38 +119,41 @@ export class QrtestComponent extends BaseComponent {
     fg: FormGroup;
     fgConfig: any;
     user: any = {};
+    rez: any = {};
+    sign:string='';
+    img:string='';
     
-    constructor(private httpUser: HttpUser, private fb: FormBuilder) {
+    constructor(private httpUser: HttpUser,private httpApi: HttpApi, private fb: FormBuilder) {
         super();
     }
     onClick(){
-        this.httpUser.user.fn('changeKey')().subscribe((res:any)=>{
-            //this.user.key=res.data.key;
+        let obj:any={};
+        utility.extend(obj,this.fg.value);
+        obj.sign=this.sign;
+        this.httpApi.pay.fn('request')(obj).subscribe((res:any)=>{
+            this.img=res._img;
+            delete res._img;
+            this.rez=res;
+
         })
     }
     
     ngOnInit() {
-        let u: any = utility.ls.get('user');
         this.fgConfig = {
             'service': ['wx_qrcode',[],{}],
             'partner': ['',[],{}],
             'order_no': [new Date().getTime(),[],{}],
             'total_fee': ['0.01',[],{}],
-            'notify_url': ['http://123.57.18.134:3000/api/pay/notify',[],{}],
-            'sign': ['',[],{}]
+            'notify_url': ['http://123.57.18.134:3000/api/pay/notify',[],{}]
         };
         this.fg = form.getFormGroup(this.fb, this.fgConfig,this.subscription);
         let subs=this.fg.valueChanges
             .distinctUntilChanged()
             .flatMap(v=>this.httpUser.user.fn('getSign')(v))
             .subscribe((res: any) => {
-                //console.log(res);
+
                 //if (res.data) this.email.setErrors({"exist": true, msg: this.fgConfig.email[2].exist});
-
-
-
-
-
+                this.sign=res.data.sign;
             });
         this.subscription.push(subs);
 

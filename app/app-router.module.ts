@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import { ErrorComponent} from './web/error.component';
 
-import {Http} from './common/http';
+//import {Http} from './common/http';
 
 let useH:any= null;
 let userAgent = window.navigator.userAgent;
@@ -23,7 +23,7 @@ useH = {useHash: true};
         //ErrorComponent //必须输出
     ],
     declarations:[ErrorComponent],
-    providers: [Http]
+    providers: []
 })
 export class AppRouterModule {
 
