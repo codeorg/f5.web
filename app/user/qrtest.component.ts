@@ -145,7 +145,11 @@ export class QrtestComponent extends BaseComponent {
             .subscribe((res: any) => {
                 //console.log(res);
                 //if (res.data) this.email.setErrors({"exist": true, msg: this.fgConfig.email[2].exist});
-                
+
+
+
+
+
             });
         this.subscription.push(subs);
 
